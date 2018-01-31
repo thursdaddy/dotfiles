@@ -1,0 +1,257 @@
+[colors]
+background = #2b303b
+background-alt = #b08d94 
+background-unf = #65737e
+background-mod0 = #b48ead
+background-mod1 = #96b5b4
+background-mod2 = #ebcb8b
+background-alrt = #96b5b4
+
+foreground = #c0c5ce 
+foreground-alt = #c0c5ce
+primary = #c0c5ce
+secondary = #c0c5ce
+
+[bar/main]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 30
+offset-x = 0%
+offset-y = 0%
+radius = 0.0
+fixed-center = true
+bottom = true
+
+modules-left = updates date weather_icons 
+modules-center = i3 
+modules-right = temperature cpu memory network backlight battery pvolume date_time
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 0
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 0
+module-margin-right = 0
+
+font-0 = "Hack:fontformat=truetype:size=9;1"
+font-1 = "Font Awesome 5 Free:style=Regularpixelsize=9;1"
+font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=9;1"
+font-3 = "Font Awesome 5 Free Brands:pixelsize=9;1"
+font-4 = "Noto Sans Symbols2:style=Regular:pixelsize=12;4"
+font-5 = "Hack:fontformat=truetype:size=7;1"
+
+
+tray-position =right
+tray-padding = 11
+tray-transparent = false
+tray-maxsize = 18
+tray-detached = false
+wm-restack = i3
+
+[module/separator]
+type = custom/text
+content = |
+content-foreground = ${colors.foreground}
+
+[module/i3]
+type = internal/i3
+index-sort = true
+strip-wsnumbers = false
+pin-workspaces = true
+
+ws-icon-0 = 1;1
+ws-icon-1 = 2;2
+ws-icon-2 = 3;3
+ws-icon-3 = 4;4
+ws-icon-4 = 5;5
+ws-icon-5 = 6;6
+ws-icon-6 = 7;7
+ws-icon-7 = 8;8
+ws-icon-8 = 9;9
+ws-icon-9 = 0;0
+
+format = <label-state>
+
+label-unfocused-background = ${colors.background-unf}
+label-mode = %mode%
+label-mode-padding = 1
+label-mode-background = ${colors.background}
+
+label-focused = %icon%
+label-focused-foreground = ${colors.foreground} 
+label-focused-background = ${colors.background-alt}
+label-focused-underline = #c0c5ce
+label-focused-padding = 1
+
+label-unfocused = %icon%
+label-unfocused-padding = 1 
+
+label-visible = %icon%
+label-visible-underline = #555555
+label-visible-padding = 1
+
+label-urgent = %icon%
+label-urgent-foreground = ${colors.foreground}
+label-urgent-background = ${colors.background-alrt}
+label-urgent-padding = 1
+
+[module/mpd]
+type = internal/mpd
+interval = 1
+format-offline-background = ${colors.background}
+format-online-background = ${colors.background-mod0}
+toggle-off-foreground = #FF0000
+toggle-on-foreground = #FF0000
+host = 127.0.0.1
+port = 6600
+format-online = <label-song>
+format-online-padding = 1
+
+[module/weather_icons]
+type = custom/script
+exec = ~/.config/scripts/weather_icons.py
+interval = 600
+label-font = 6
+
+[module/backlight]
+type = internal/xbacklight
+#card = intel_backlight
+#format = <label>
+#label = %percentage%%
+output = eDP1
+enable-scroll = true
+format-padding = 1
+label-padding = 1.5
+format-prefix = ""
+
+[module/date]
+type = internal/date
+interval = 5
+time = "%A, %b %d "
+format-padding = 1.5
+format-prefix-foreground = ${colors.foreground-alt}
+label = %time% 
+
+[module/date_time]
+type = internal/date
+interval = 1
+time = "%I:%M:%S %p"
+format-padding = 2
+format-prefix-foreground = ${colors.foreground-alt}
+label = %time%
+
+[module/temperature]
+type = internal/temperature
+interval = 0.5
+hwmon-path = /sys/devices/virtual/hwmon/hwmon2/temp1_input
+#format-padding = 1
+label-padding = 1
+label-font = 6
+
+[module/cpu_freq]
+type = custom/script
+exec = ~/.config/scripts/cpu_freq.py
+interval = a10
+format-padding = 1.5
+
+[module/title]
+type = internal/xwindow
+format-background = ${colors.background}
+format-foreground = ${colors.foreground}
+format-padding = 1.5
+
+[module/updates]
+type = custom/script
+exec = ~/.config/scripts/updates.sh
+interval = 3600
+format = <label>
+label = "%output:0:30%"
+format-padding = 1
+
+[module/pvolume]
+type = custom/script
+interval = 1
+label = %output%
+label-padding = 1.5
+format-padding = 1.5
+exec = ~/.config/scripts/volume.sh
+click-right = exec pavucontrol
+click-left = ~/.config/scripts/volume.sh --togmute
+scroll-up = ~/.config/scripts/volume.sh --up
+scroll-down = ~/.config/scripts/volume.sh --down
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ADP1
+full-at = 98
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+label-full = %percentage%
+
+format-padding = 3
+ramp-capacity-0 = 
+#ramp-capacity-0-foreground = ${colors.alert}
+ramp-capacity-1 = 
+#ramp-capacity-1-foreground = ${colors.warning}
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+#ramp-capacity-foreground = ${colors.foreground-alt}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+#animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-framerate = 750
+
+[module/weather]
+type = custom/script
+interval = 3600
+format = <label>
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format-padding = 1.5
+exec = ~/.config/scripts/weather.py
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = "" 
+format-prefix-foreground = ${colors.foreground}
+label = %percentage%%
+label-foreground = ${colors.foreground}
+#format-padding = 1
+label-padding = 1
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground}
+label = %percentage_used%%
+label-foreground = ${colors.foreground}
+format-padding = 1.5
+laebl-padding = 1.5
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-back2ground = screen
+;compositing-foreground = source
+;compositing-border = over
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
