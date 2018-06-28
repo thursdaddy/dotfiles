@@ -11,7 +11,7 @@ if [[ $HDMI_CHECK == HDMI* ]]; then
 	MONITOR=eDP1 polybar --reload side & 
 	MONITOR=$HDMI_CHECK polybar --reload main & 
 else
-	MONITOR=eDP1 polybar main &
+	MONITOR=eDP1 polybar --reload main &
 fi
 
 DP_CHECK=$(xrandr --query | grep -w "DP.* connected" | cut -d" " -f1)
