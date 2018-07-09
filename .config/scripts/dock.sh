@@ -9,7 +9,7 @@ dock () {
   $HOME/.config/polybar/launch.sh &
 }
 
-function undock {
+undock () {
 	xrandr --output $MONITOR --off
 }
 
