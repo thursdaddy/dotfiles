@@ -1,11 +1,12 @@
 # If you come from bash you might have to change your $PATH.
+
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Path to your oh-my-zsh installation.
 #
 
-if [[ ! $TERM =~ screen ]]; then
-    exec tmux
-fi
+#if [[ ! $TERM =~ screen ]]; then
+#    exec tmux
+#fi
 
 export ZSH=/home/thurs/.oh-my-zsh
 export LANG="en_US.UTF-8"
@@ -16,25 +17,20 @@ export TERM="xterm-256color"
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
-
 alias config='/usr/bin/git --git-dir=$HOME/.dotcfg/ --work-tree=$HOME'
 alias syncnotes='aws s3 sync $HOME/Docs/Notes s3://thursdaddy/notes/laptop --sse --profile thurs-notes' 
 alias weechat='docker run -v ~/.weechat:/home/guest/.weechat -t -i fstab/weechat-otr'
 alias update='yaourt -Syu --aur'
-
-# Import colorscheme from 'wal' asynchronously
-# &   # Run the process in the background.
-# ( ) # Hide shell job control messages.
-(cat ~/.cache/wal/sequences &)
+alias dock='$HOME/.config/scripts/dock.sh dock'
+alias undock='$HOME/.config/scripts/dock.sh undock'
 
 source ~/.oh-my-zsh/antigen.zsh
 antigen use oh-my-zsh
 antigen bundle nviennot/zsh-vim-plugin 
 antigen bundle gko/ssh-connect
-antigen bundle sei40kr/zsh-tmux-rename 
+#antigen bundle sei40kr/zsh-tmux-rename 
 antigen bundle TBSliver/zsh-plugin-tmux-simple
 antigen bundle bric3/nice-exit-code 
-antigen bundle ael-code/zsh-colored-man-pages
 antigen bundle Tarrasch/zsh-bd
 antigen bundle popstas/zsh-command-time
 antigen bundle zsh-users/zsh-syntax-highlighting
@@ -43,9 +39,7 @@ antigen bundle supercrabtree/k
 antigen bundle Cloudstek/zsh-plugin-appup 
 antigen bundle zlsun/solarized-man
 antigen bundle psprint/history-search-multi-word
-antigen bundle chrissicool/zsh-256color
 antigen bundle wting/autojump 
-antigen theme https://github.com/denysdovhan/spaceship-prompt spaceship
 antigen apply
 
 	[[ -s /home/thurs/.autojump/etc/profile.d/autojump.sh ]] && source /home/thurs/.autojump/etc/profile.d/autojump.sh
@@ -54,6 +48,9 @@ antigen apply
 
 plugins=(git history-search-multi-word zsh-autosuggestions zsh-syntax-highlighting command-time you-should-use)
 
+export UPDATE_ZSH_DAYS=1
+
+#source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -72,10 +69,10 @@ plugins=(git history-search-multi-word zsh-autosuggestions zsh-syntax-highlighti
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+#DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -100,32 +97,9 @@ plugins=(git history-search-multi-word zsh-autosuggestions zsh-syntax-highlighti
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
+# Import colorscheme from 'wal' asynchronously
+# &   # Run the process in the background.
+# ( ) # Hide shell job control messages.
+(cat ~/.cache/wal/sequences &)
 
-# export MANPATH="/usr/local/man:$MANPATH"
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme

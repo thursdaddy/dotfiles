@@ -1,19 +1,14 @@
 [colors]
-background = #000f0f0f
-background-alt = #000f0f0f 
-background-unf = #8b8c90
-foreground-unf = #8b8c90
-background-mod0 = #b48ead
-background-mod1 = #96b5b4
-background-mod2 = #ebcb8b
-background-alrt = #e36969
-foreground-foc = #fffffff
+background = ${xrdb:color6}
+background-alt = ${xrdb:color3} 
+background-unf = ${xrdb:color6}
 
-foreground = #c0c5ce 
-foreground-alrt = #c0c5ce
-foreground-alt = #c0c5ce
-primary = #c0c5ce
-secondary = #c0c5ce
+foreground = ${xrdb:color15} 
+foreground-alt = ${xrdb:color15} 
+foreground-unf = ${xrdb:color15}
+foreground-foc = ${xrdb:color12} 
+foreground-alrt = ${xrdb:color3}
+foreground-warn = ${xrdb:color3}
 
 [bar/main]
 monitor = ${env:MONITOR:}
@@ -21,26 +16,26 @@ width = 100%
 height = 25
 offset-x = 0
 offset-y = 0
-radius = 0.0
+radius = 10.0
 fixed-center = true
 bottom = true 
 
-font-0 = "Hack:fontformat=truetype:size=9;1"
-font-1 = "Font Awesome 5 Free:style=Regularpixelsize=9;1"
-font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=9;1"
-font-3 = "Font Awesome 5 Brands:pixelsize=9;1"
-font-4 = "Noto Sans Symbols2:style=Regular:pixelsize=12;4"
-font-5 = "Hack:fontformat=truetype:size=7;1"
+font-0 = "Hack:fontformat=truetype:size=8;1"
+font-1 = "Font Awesome 5 Free:style=Regularpixelsize=10;1"
+font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=10;1"
+font-3 = "Font Awesome 5 Brands:pixelsize=10;1"
+#font-5 = "Hack:fontformat=truetype:size=7;1"
+font-5 = "Hack:size=10:weight=Bold;1"
 
-modules-left = cpu memory updates 
 modules-center = i3
-modules-right = battery backlight pvolume date
+modules-left = date weather 
+modules-right = battery backlight pvolume memory cpu updates  
 
-background = ${colors.background}
+background = #00000000
 foreground = ${colors.foreground}
 
 border-bottom-size = 0
-border-top-size = 0
+border-top-size = 3
 border-left-size = 5
 border-right-size = 5
 border-color = #00000000
@@ -50,9 +45,9 @@ padding-left = 1
 module-margin-left = 1
 module-margin-right = 1
 
-tray-position = right 
-tray-padding = 5
-tray-transparent = true
+tray-position = right
+tray-padding = 10
+tray-transparent = true 
 tray-maxsize = 18
 tray-detached = false
 wm-restack = i3
@@ -65,30 +60,30 @@ offset-x = 0%
 offset-y = 0%
 radius = 0.0
 fixed-center = true
-bottom = true
+bottom = true 
 
-modules-left = date 
+modules-left = date weather
 modules-center = i3 
-modules-right = backlight pvolume 
+modules-right = battery backlight pvolume memory cpu 
+#modules-right = pvolume backlight battery 
 
-background = ${colors.background}
+background = #00000000
 foreground = ${colors.foreground}
 
 padding-left = 0
 padding-right = 0
 
-module-margin-left = 1
+
 module-margin-right = 1
 
-font-0 = "Hack:fontformat=truetype:size=9;1"
+font-0 = "Hack:fontformat=truetype:size=8;1"
 font-1 = "Font Awesome 5 Free:style=Regularpixelsize=9;1"
 font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=9;1"
 font-3 = "Font Awesome 5 Brands:pixelsize=9;1"
-font-4 = "Noto Sans Symbols2:style=Regular:pixelsize=12;4"
-font-5 = "Hack:fontformat=truetype:size=7;1"
+font-5 = "Hack-Bold:size=10:weight=Bold;1"
 
 tray-position = right
-tray-padding = 5
+tray-padding = 10
 tray-transparent = true
 tray-maxsize = 18
 tray-detached = false
@@ -113,7 +108,7 @@ ws-icon-9 = 0;
 
 format = <label-state> <label-mode>
 
-label-unfocused-background = ${colors.background}
+#label-unfocused-background = ${colors.background}
 label-unfocused-foreground = ${colors.foreground-unf} 
 label-mode = %mode%
 label-mode-padding = 1
@@ -121,7 +116,7 @@ label-mode-background = ${colors.background}
 
 label-focused = %icon%
 label-focused-foreground = ${colors.foreground-foc} 
-label-focused-background = ${colors.background}
+#label-focused-background = #000000000
 label-focused-padding = 1
 
 label-unfocused = %icon%
@@ -133,7 +128,7 @@ label-visible-padding = 1
 
 label-urgent = %icon%
 label-urgent-foreground = ${colors.foreground-alrt}
-label-urgent-background = ${colors.background}
+#label-urgent-background = ${colors.background}
 label-urgent-padding = 1
 
 [module/weather_icons]
@@ -144,18 +139,23 @@ interval = 600
 [module/backlight]
 type = internal/xbacklight
 card = intel_backlight
+format-prefix-foreground = ${colors.foreground-alt}
 format = <label>
 label = %percentage%%
 output = eDP1
 enable-scroll = true
 format-prefix = " "
+label-active = %token%
+label-active-font = 5
 
 [module/date]
 type = internal/date
 interval = 1
-time = "%I:%M:%S"
-format-prefix-foreground = ${colors.foreground-alt}
-format-padding = 3
+time = "%a, %b %d  %l:%M %p"
+format-prefix-foreground = ${colors.foreground-foc}
+label-active = %token%
+label-active-font = 5
+format-padding = 1
 label = %time%
 
 [module/title]
@@ -169,6 +169,9 @@ exec = ~/.config/scripts/updates.sh
 interval = 60
 format = <label>
 label = "%output:0:30%"
+label-active = %token%
+format-prefix-foreground = ${colors.foreground-alt}
+label-active-font = 5
 
 [module/pvolume]
 type = custom/script
@@ -179,38 +182,42 @@ click-right = exec pavucontrol
 click-left = ~/.config/scripts/volume.sh --togmute
 scroll-up = ~/.config/scripts/volume.sh --up
 scroll-down = ~/.config/scripts/volume.sh --down
+#label-active = %token%
+#label-active-font = 5
+format = <label>
+format-prefix-foreground = ${colors.foreground-alt}
 
 [module/battery]
 type = internal/battery
 battery = BAT0
 adapter = ADP1
-full-at = 98
+full-at = 100
 format-charging = <animation-charging> <label-charging>
 format-discharging = <ramp-capacity> <label-discharging>
 label-full = %percentage%
 
 ramp-capacity-0 = 
-#ramp-capacity-0-foreground = ${colors.alert}
+ramp-capacity-0-foreground = ${colors.foreground-alrt}
 ramp-capacity-1 = 
-#ramp-capacity-1-foreground = ${colors.warning}
+ramp-capacity-1-foreground = ${colors.foreground-warn}
 ramp-capacity-2 = 
 ramp-capacity-3 = 
 ramp-capacity-4 = 
-#ramp-capacity-foreground = ${colors.foreground-alt}
+ramp-capacity-foreground = ${colors.foreground-alt}
 
 animation-charging-0 = 
 animation-charging-1 = 
 animation-charging-2 = 
 animation-charging-3 = 
 animation-charging-4 = 
-#animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-foreground = ${colors.foreground-foc}
 animation-charging-framerate = 750
 
 [module/weather]
 type = custom/script
 interval = 3600
 format = <label>
-format-prefix = " "
+format-prefix = "    "
 format-prefix-foreground = ${colors.foreground-alt}
 exec = ~/.config/scripts/weather.py
 
@@ -218,7 +225,7 @@ exec = ~/.config/scripts/weather.py
 type = internal/cpu
 interval = 1
 format-prefix = " " 
-format-prefix-foreground = ${colors.foreground}
+format-prefix-foreground = ${colors.foreground-alt}
 label = %percentage%%
 label-foreground = ${colors.foreground}
 
@@ -226,7 +233,7 @@ label-foreground = ${colors.foreground}
 type = internal/memory
 interval = 2
 format-prefix = " "
-format-prefix-foreground = ${colors.foreground}
+format-prefix-foreground = ${colors.foreground-alt}
 label = %percentage_used%%
 label-foreground = ${colors.foreground}
 

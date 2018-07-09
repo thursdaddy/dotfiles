@@ -8,13 +8,16 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 HDMI_CHECK=$(xrandr --query | grep -w "HDMI.* connected" | cut -d" " -f1)
 if [[ $HDMI_CHECK == HDMI* ]]; then
-	MONITOR=eDP1 polybar --reload side & 
-	MONITOR=$HDMI_CHECK polybar --reload main & 
+	MONITOR=eDP1 polybar -q --reload side & 
+	MONITOR=$HDMI_CHECK polybar -q --reload main & 
+	nitrogen --restore
 else
-	MONITOR=eDP1 polybar --reload main &
+	MONITOR=eDP1 polybar -q --reload main &
+	nitrogen --restore
 fi
 
 DP_CHECK=$(xrandr --query | grep -w "DP.* connected" | cut -d" " -f1)
 if [[ $DP_CHECK == DP* ]]; then
-	MONITOR=$DP_CHECK polybar --reload side &
+	MONITOR=$DP_CHECK polybar -q --reload side &
+	nitrogen --restore
 fi
