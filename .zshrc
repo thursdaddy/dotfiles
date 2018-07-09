@@ -19,7 +19,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 
 alias config='/usr/bin/git --git-dir=$HOME/.dotcfg/ --work-tree=$HOME'
 alias syncnotes='aws s3 sync $HOME/Docs/Notes s3://thursdaddy/notes/laptop --sse --profile thurs-notes' 
-alias weechat='docker run -v ~/.weechat:/home/guest/.weechat -t -i fstab/weechat-otr'
+alias weechat='docker stop weechat; docker rm weechat; docker run --name weechat -v ~/.weechat:/home/guest/.weechat -t -i fstab/weechat-otr'
 alias update='yaourt -Syu --aur'
 alias dock='$HOME/.config/scripts/dock.sh dock'
 alias undock='$HOME/.config/scripts/dock.sh undock'
@@ -28,7 +28,6 @@ source ~/.oh-my-zsh/antigen.zsh
 antigen use oh-my-zsh
 antigen bundle nviennot/zsh-vim-plugin 
 antigen bundle gko/ssh-connect
-#antigen bundle sei40kr/zsh-tmux-rename 
 antigen bundle TBSliver/zsh-plugin-tmux-simple
 antigen bundle bric3/nice-exit-code 
 antigen bundle Tarrasch/zsh-bd
@@ -50,8 +49,6 @@ plugins=(git history-search-multi-word zsh-autosuggestions zsh-syntax-highlighti
 
 export UPDATE_ZSH_DAYS=1
 
-#source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
-
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -69,10 +66,10 @@ export UPDATE_ZSH_DAYS=1
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-#DISABLE_AUTO_TITLE="true"
+# DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
