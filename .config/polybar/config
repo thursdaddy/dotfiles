@@ -50,9 +50,9 @@ module-margin-left = 1
 module-margin-right = 1
 
 tray-position = right
-tray-padding = 10
+tray-padding = 5
 tray-transparent = true 
-tray-maxsize = 18
+tray-maxsize = 20
 tray-detached = false
 wm-restack = i3
 
