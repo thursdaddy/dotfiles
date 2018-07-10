@@ -8,7 +8,7 @@ background-unf = ${xrdb:color6}
 foreground = ${xrdb:color15} 
 foreground-alt = ${xrdb:color15} 
 foreground-unf = ${xrdb:color15}
-foreground-foc = ${xrdb:color3} 
+foreground-foc = ${xrdb:color2} 
 foreground-alrt = #db0707
 foreground-warn = #eecc04
 
@@ -133,7 +133,6 @@ label-visible-padding = 1
 
 label-urgent = %icon%
 label-urgent-foreground = ${colors.foreground-alrt}
-label-urgent-background = #000000
 label-urgent-padding = 1
 
 [module/weather_icons]
