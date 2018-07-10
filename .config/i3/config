@@ -50,9 +50,10 @@ bindsym $mod+Return exec termite
 bindsym $mod+t exec telegram-desktop
 bindsym $mod+Control+Return exec vivaldi-stable
 bindsym $mod+Shift+q kill
-bindsym $mod+o exec --no-startup-id rofi -show run
+bindsym $mod+o exec --no-startup-id rofi -show drun -show-icons
 bindsym $mod+Shift+o exec --no-startup-id rofi -show window 
 
+# screen locker
 exec xautolock -detectsleep -time 15 -locker "~/.config/scripts/lock.sh" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'locking screen in 30 seconds'"
 bindsym $mod+Shift+x exec "~/.config/scripts/lock.sh"
 
@@ -190,7 +191,16 @@ bindsym --release $mod+Shift+p exec "scrot -s /home/thurs/Pictures/screenshots/s
 exec --no-startup-id compton --config $HOME/.config/compton/compton.conf -b
 exec_always --no-startup-id blueman-applet
 exec_always --no-startup-id nm-applet
-#exec_always --no-startup-id nitrogen --restore
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
+exec telegram-desktop
+for_window [Class="TelegramDesktop"] move to workspace 2
+
+exec vivaldi-stable 
+exec termite 
+exec vivaldi-stable "music.google.com"
+for_window [Title="Home - Google Play Music"] move to workspace 4
+
+
 new_window 1pixel
+
