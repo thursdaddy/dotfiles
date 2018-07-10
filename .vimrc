@@ -4,13 +4,14 @@ set relativenumber
 set number
 
 set noshowmode
-set nocompatible
 set hidden
 
-set tabstop=4
+set tabstop=8
+set softtabstop=4
+set shiftwidth=4
+set expandtab
 set autoindent
 set copyindent
-set shiftwidth=4
 set ignorecase
 set showmatch
 set smarttab
@@ -19,12 +20,16 @@ set incsearch
 
 set history=1000
 set undolevels=1000
-set nobackup
-set noswapfile
-set pastetoggle=<F2>
+
+set backupdir=~/.vim/tmp,.
+set directory=~/.vim/tmp,.
+set undodir=~/.vim/tmp,.
 
 syntax on
 filetype plugin indent on
+
+set pastetoggle=<F2>
+nnoremap <F1> :set nonumber! norelativenumber!<CR>
 
 " NERDTree CONFIG
 map <C-n> :NERDTreeToggle<CR>
