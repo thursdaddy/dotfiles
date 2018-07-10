@@ -5,4 +5,5 @@ xbindkeys
 systemctl --user set-environment DISPLAY=:0
 wal -R 
 nitrogen --restore &
+xrdb -load ~/.Xresources
 exec i3
