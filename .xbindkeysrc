@@ -1,0 +1,79 @@
+###########################
+# xbindkeys configuration #
+###########################
+#
+# Version: 0.1.3
+#
+# If you edit this, do not forget to uncomment any lines that you change.
+# The pound(#) symbol may be used anywhere for comments.
+#
+# A list of keys is in /usr/include/X11/keysym.h and in
+# /usr/include/X11/keysymdef.h 
+# The XK_ is not needed. 
+#
+# List of modifier (on my keyboard): 
+#   Control, Shift, Mod1 (Alt), Mod2 (NumLock), 
+#   Mod3 (CapsLock), Mod4, Mod5 (Scroll). 
+#
+# Another way to specifie a key is to use 'xev' and set the 
+# keycode with c:nnn or the modifier with m:nnn where nnn is 
+# the keycode or the state returned by xev 
+#
+# This file is created by xbindkey_config 
+# The structure is : 
+# # Remark 
+# "command" 
+# m:xxx + c:xxx 
+# Shift+... 
+
+
+
+
+#keystate_numlock = enable
+#keystate_scrolllock = enable
+#keystate_capslock = enable
+
+
+
+#volume up
+"pactl set-sink-volume @DEFAULT_SINK@ +5%"
+    m:0x0 + c:69
+    F3 
+
+#volume down
+"pactl set-sink-volume @DEFAULT_SINK@ -5%"
+    m:0x0 + c:68
+    F2 
+
+#brightness up
+"xbacklight +5"
+    m:0x0 + c:96
+    F12 
+
+#brightness down
+"xbacklight -5"
+    m:0x0 + c:95
+    F11 
+
+#full brightness
+"xbacklight = 100"
+    m:0x0 + c:107
+    Print 
+
+#volume mute
+"pactl set-sink-mute @DEFAULT_SINK@ toggle"
+    m:0x0 + c:67
+    F1 
+
+#dock
+"bash -c "/home/thurs/.config/scripts/dock.sh dock""
+    m:0x0 + c:74
+    F8 
+
+#undock
+"bash -c "/home/thurs/.config/scripts/dock.sh undock""
+    m:0x0 + c:73
+    F7 
+
+#
+# End of xbindkeys configuration
