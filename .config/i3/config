@@ -188,16 +188,16 @@ bindsym --release $mod+p exec "scrot /home/thurs/Pictures/screenshots/sshot-$(da
 bindsym --release $mod+Shift+p exec "scrot -s /home/thurs/Pictures/screenshots/sshot-$(date +%F-%I-%M-%S-{$RANDOM}).png -q 100"	
 
 # autostart
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id compton --config $HOME/.config/compton/compton.conf -b
 exec_always --no-startup-id blueman-applet
 exec_always --no-startup-id nm-applet
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
+exec termite 
+exec vivaldi-stable 
 exec telegram-desktop
 for_window [Class="TelegramDesktop"] move to workspace 2
 
-exec vivaldi-stable 
-exec termite 
 exec vivaldi-stable "music.google.com"
 for_window [Title="Home - Google Play Music"] move to workspace 4
 
