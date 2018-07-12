@@ -66,14 +66,9 @@
     F1 
 
 #dock
-"bash -c "/home/thurs/.config/scripts/dock.sh dock""
+"bash -c "/home/thurs/.config/scripts/dock.sh""
     m:0x0 + c:74
     F8 
-
-#undock
-"bash -c "/home/thurs/.config/scripts/dock.sh undock""
-    m:0x0 + c:73
-    F7 
 
 #
 # End of xbindkeys configuration
