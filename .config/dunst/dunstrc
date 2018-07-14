@@ -22,7 +22,7 @@
     show_age_threshold = 60
     word_wrap = yes
     ignore_newline = no
-    geometry = "700x20-20-65"
+    geometry = "700x20-12-73"
     shrink = yes
     transparency = 10
     idle_threshold = 120

@@ -39,7 +39,7 @@
 rofi.font:		hack 10
 rofi.lines:		3
 rofi.hide-scrollbar: 	true
-rofi.width:		20
+rofi.width:		25
 rofi.bw: 		0
 rofi.fullscreen:    	false	
 rofi.separator-style:	solid
