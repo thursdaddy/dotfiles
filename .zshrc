@@ -8,6 +8,8 @@
 #    exec tmux
 #fi
 
+bindkey "${terminfo[khome]}" beginning-of-line
+
 export ZSH=/home/thurs/.oh-my-zsh
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
@@ -20,7 +22,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 alias config='/usr/bin/git --git-dir=$HOME/.dotcfg/ --work-tree=$HOME'
 alias syncnotes='aws s3 sync $HOME/Docs/Notes s3://thursdaddy/notes/laptop --sse --profile thurs-notes' 
 alias weechat='docker stop weechat; docker rm weechat; docker run --name weechat -v ~/.weechat:/home/guest/.weechat -t -i fstab/weechat-otr'
-alias update='yaourt -Syu --aur'
+alias update='yay -Syu --aur'
 alias dock='$HOME/.config/scripts/dock.sh dock'
 alias undock='$HOME/.config/scripts/dock.sh undock'
 
