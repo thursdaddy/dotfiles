@@ -201,6 +201,10 @@ for_window [Class="TelegramDesktop"] move to workspace 2
 exec vivaldi-stable "music.google.com"
 for_window [Title="Home - Google Play Music"] move to workspace 4
 
+exec streamlink-twitch-gui
+for_window [Title="Streamlink Twitch GUI"] move to workspace 6
+
+exec thunderbird
+for_window [Class="Thunderbird"] move to workspace 9
 
 new_window 1pixel
-
