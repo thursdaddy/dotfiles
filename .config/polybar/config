@@ -27,10 +27,12 @@ bottom = true
 font-0 = "Hack:fontformat=truetype:size=10;1"
 font-1 = "Font Awesome 5 Free:style=Regularpixelsize=11;1"
 font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=11;1"
-font-3 = "Font Awesome 5 Brands:pixelsize=11;1"
+font-3 = "Noto Sans Symbols2:style=Regular:pixelsize=16;4"
+font-4 = "FuraMono Nerd Font Mono:style=Regular:pixelsize=22;2"
 
+
+modules-left = date weather
 modules-center = i3
-modules-left = date weather 
 modules-right = battery backlight pvolume memory cpu updates  
 
 # sets bar to transparent 
@@ -68,7 +70,7 @@ radius = 0.0
 fixed-center = true
 bottom = true 
 
-modules-left = date weather 
+modules-left = date weather
 modules-center = i3 
 modules-right = battery backlight pvolume memory cpu 
 
@@ -85,7 +87,8 @@ module-margin-left = 1
 font-0 = "Hack:fontformat=truetype:size=9;1"
 font-1 = "Font Awesome 5 Free:style=Regularpixelsize=11;1"
 font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=11;1"
-font-3 = "Font Awesome 5 Brands:pixelsize=11;1"
+font-3 = "Noto Sans Symbols2:style=Regular:pixelsize=16;4"
+font-4 = "FuraMono Nerd Font Mono:style=Regular:pixelsize=22;2"
 
 tray-position = right
 tray-padding = 10
@@ -151,10 +154,21 @@ enable-scroll = true
 format-prefix = " "
 label-active = %token%
 
+[module/weather]
+type = custom/script
+interval = 1
+exec = ~/.config/scripts/weather.py
+click-left = ~/.config/scripts/weather.py -t
+click-right = ~/.config/scripts/weather.py -n
+
+label = %output%
+format = <label>
+
 [module/date]
 type = internal/date
 interval = 1
-time = "%l:%M:%S %p    %a, %b %d"
+time = "%l:%M:%S %p    |"
+time-alt = "%a, %b %d  |"
 
 format-prefix-foreground = ${colors.foreground-foc}
 label-active = %token%
@@ -213,13 +227,15 @@ animation-charging-4 = 
 animation-charging-foreground = ${colors.foreground-foc}
 animation-charging-framerate = 750
 
-[module/weather]
-type = custom/script
-interval = 3600
-format = <label>
-format-prefix = "    "
-format-prefix-foreground = ${colors.foreground-alt}
-exec = ~/.config/scripts/weather.py
+#[module/weather]
+#type = custom/script
+#interval = 3600
+##format = <label>
+##format-prefix = "    "
+##format-prefix-foreground = ${colors.foreground-alt}
+#label-active = %token%
+#label-actice-font = 2
+#exec = ~/.config/scripts/weather_icons.py
 
 [module/cpu]
 type = internal/cpu
@@ -247,4 +263,3 @@ screenchange-reload = true
 [global/wm]
 margin-top = 0
 margin-bottom = 0
-
