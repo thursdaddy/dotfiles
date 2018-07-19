@@ -1,11 +1,13 @@
 #!/bin/python
 
-## need api key from ipstack.com defind as geo_key
+## need api key from ipstack.com 
+## define as geo_key in get_geo()
 ## will make configurable with zip
 ## fonts are nerd-fonts-complete
 
 from urllib.parse import urlparse
 from configparser import ConfigParser
+from collections import defaultdict
 import argparse
 import os
 import requests
@@ -18,50 +20,7 @@ import time
 logging.getLogger().setLevel(logging.WARNING)
 
 def get_icon(icon, isDaytime):
-   if isDaytime == 'false':
-       parsed = urlparse(icon).path
-       icon = re.search('[^/]+$', parsed)
-       icon = icon.group(0)
-       icon = re.sub(r',.*', '', icon)
-       icons = {
-                "skc": "",
-                "few": "",
-                "sct": "",
-                "bkn": "",
-                "ovc": "",
-                "wind_skc": "",
-                "wind_few": "",
-                "wind_sct": "",
-                "wind_bkn": "",
-                "wind_ovc": "",
-                "snow": "",
-                "rain_snow": "",
-                "rain_sleet": "",
-                "snow_sleet": "",
-                "fzra": "",
-                "rain_fzra": "",
-                "snow_fzra": "",
-                "sleet": "",
-                "rain": "",
-                "rain_showers": "",
-                "rain_shows_hi": "",
-                "tsra": "",
-                "tsra_sct": "",
-                "tsra_hi": "",
-                "tornado": "",
-                "hurricane": "",
-                "tropical_storm": "",
-                "dust": "",
-                "smoke": "",
-                "haze": "",
-                "hot": "",
-                "cold": "",
-                "blizzard": "",
-                "fog": "",
-                }
-       result = str(icons.get(icon, "?"))
-       return result
-   else:
+   if isDaytime:
        parsed = urlparse(icon).path
        icon = re.search('[^/]+$', parsed)
        icon = icon.group(0)
@@ -104,6 +63,49 @@ def get_icon(icon, isDaytime):
                 }
        result = str(icons.get(icon, "?"))
        return result
+   else:
+       parsed = urlparse(icon).path
+       icon = re.search('[^/]+$', parsed)
+       icon = icon.group(0)
+       icon = re.sub(r',.*', '', icon)
+       icons = {
+                "skc": "",
+                "few": "",
+                "sct": "",
+                "bkn": "",
+                "ovc": "",
+                "wind_skc": "",
+                "wind_few": "",
+                "wind_sct": "",
+                "wind_bkn": "",
+                "wind_ovc": "",
+                "snow": "",
+                "rain_snow": "",
+                "rain_sleet": "",
+                "snow_sleet": "",
+                "fzra": "",
+                "rain_fzra": "",
+                "snow_fzra": "",
+                "sleet": "",
+                "rain": "",
+                "rain_showers": "",
+                "rain_shows_hi": "",
+                "tsra": "",
+                "tsra_sct": "",
+                "tsra_hi": "",
+                "tornado": "",
+                "hurricane": "",
+                "tropical_storm": "",
+                "dust": "",
+                "smoke": "",
+                "haze": "",
+                "hot": "",
+                "cold": "",
+                "blizzard": "",
+                "fog": "",
+                }
+       result = str(icons.get(icon, "?"))
+       return result
 
 def wind_direction(winddir):
     icons = { 
@@ -120,19 +122,33 @@ def wind_direction(winddir):
     return winddir
 
 def sendmessage(message):
-    subprocess.Popen(['notify-send', "-t", "10000", message])
+    subprocess.Popen(['notify-send', "-t", "100000", message])
     return
 
-def get5day(day):
+def get5day():
     forecast = (get_geo())
     forecast = requests.get(forecast)
     forecast = json.loads(forecast.text)
-    title = forecast["properties"]["periods"][day]["name"]
-    isDaytime = forecast["properties"]["periods"][day]["isDaytime"]
-    icon = get_icon(forecast["properties"]["periods"][day]["icon"], isDaytime)
-    desc = forecast["properties"]["periods"][day]["detailedForecast"]
-    temp = forecast["properties"]["periods"][day]["temperature"]
-    message = ("%s %s\nH:%s - L: \n%s" % (title, icon, temp, desc))
+    d = defaultdict(dict)
+    for day in range(1,14):
+        d["name"][day] = forecast["properties"]["periods"][day]["name"] 
+        d["isDaytime"][day] = forecast["properties"]["periods"][day]["isDaytime"]
+        d["desc"][day] = forecast["properties"]["periods"][day]["detailedForecast"]
+        d["shrtdesc"][day] = forecast["properties"]["periods"][day]["shortForecast"]
+        d["temp"][day] = forecast["properties"]["periods"][day]["temperature"]
+        if d["isDaytime"][day]:
+            isDaytime = True
+            d["icon"][day] = get_icon(forecast["properties"]["periods"][day]["icon"], isDaytime)
+        else:
+            isDaytime = False
+            d["icon"][day] = get_icon(forecast["properties"]["periods"][day]["icon"], isDaytime)
+    
+    if d["isDaytime"][2]:
+        message = ("%s - %s°F\t%s\n%s\n\n%s\t%s°F\t%s\t%s\n\t%s°F\t%s\t%s\n%s\t%s°F\t%s\t%s\n\t%s°F\t%s\t%s\n%s\t%s°F\t%s\t%s\n\t%s°F\t%s\t%s\n%s\t%s°F\t%s\t%s\n\t%s°F\t%s\t%s\n%s\t%s°F\t%s\t%s\n\t%s°F\t%s\t%s" % (d["name"][1], d["temp"][1], d["icon"][1], d["desc"][1], d["name"][2][:3], d["temp"][2], d["icon"][2], d["shrtdesc"][2], d["temp"][3], d["icon"][3], d["shrtdesc"][3], d["name"][4][:3], d["temp"][4], d["icon"][4], d["shrtdesc"][4], d["temp"][5], d["icon"][5], d["shrtdesc"][5], d["name"][6][:3], d["temp"][6], d["icon"][6], d["shrtdesc"][6], d["temp"][7], d["icon"][7], d["shrtdesc"][7], d["name"][8][:3], d["temp"][8], d["icon"][8], d["shrtdesc"][8], d["temp"][9], d["icon"][9], d["shrtdesc"][9], d["name"][10][:3], d["temp"][10], d["icon"][10], d["shrtdesc"][10], d["temp"][11], d["icon"][11], d["shrtdesc"][11]))
+
+        #message = ("%s - %s%s\n%s\n\n%s\t\t%s%s\t%s\n%s\t\t%s%s\t%s\n%s\t%s%s\t%s\n%s\t%s%s\t%s\n%s\t%s%s\t%s\n%s\t%s%s\t%s\n%s\t%s%s\t%s\n%s\t%s%s\t%s\n%s\t%s%s\t%s\n" % (d["name"][1], d["icon"][1], d["temp"][1], d["desc"][1],d["name"][2], d["icon"][2], d["temp"][2], d["shrtdesc"][2], d["name"][3], d["icon"][3], d["temp"][3], d["shrtdesc"][3],d["name"][4], d["icon"][4], d["temp"][4], d["shrtdesc"][4],d["name"][5], d["icon"][5], d["temp"][5], d["shrtdesc"][5],d["name"][6], d["icon"][6], d["temp"][6], d["shrtdesc"][6],d["name"][7], d["icon"][7], d["temp"][7], d["shrtdesc"][7],d["name"][8], d["icon"][8], d["temp"][8], d["shrtdesc"][8],d["name"][9], d["icon"][9], d["temp"][9], d["shrtdesc"][9],d["name"][10], d["icon"][10], d["temp"][10], d["shrtdesc"][10]))
+    else: 
+        message = "test" 
     return message
 
 def get_weather(config):
@@ -216,9 +232,8 @@ config = {
         }
 
 if args.notify_send:
-    for day in range(1,10, 2):
-        message = get5day(day)
-        sendmessage(message)
+    message = get5day()
+    sendmessage(message)
     exit
 
 if args.toggle_forecast:
