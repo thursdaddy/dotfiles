@@ -1,5 +1,9 @@
 #!/bin/python
 
+## need api key from ipstack.com defind as geo_key
+## will make configurable with zip
+## fonts are nerd-fonts-complete
+
 from urllib.parse import urlparse
 from configparser import ConfigParser
 import argparse
@@ -143,7 +147,6 @@ def get_weather(config):
         temp = forecast["properties"]["periods"][0]["temperature"]
         info = forecast["properties"]["periods"][0]["shortForecast"]
         result = ("%s°F %s %s" % (temp, icon, info))
-        return result
     elif config['forecast_type'] == "long":
         forecast = (get_geo())
         forecast = requests.get(forecast)
@@ -159,12 +162,14 @@ def get_weather(config):
         windicon = wind_direction(forecast["properties"]["periods"][0]["windDirection"])
         winddir = forecast["properties"]["periods"][0]["windDirection"]
         result = ("%s: %s°F %s %s      %s %s" % (title, temp, icon, info, windspd, windicon))
-        return result 
+    with open(cache_path, 'w') as cache_file:
+        logging.debug("Writing cache.")
+        cache_file.write(result)
+    return result 
 
 def get_geo():
     # get geo location based on IP
     # finds forecastOffice from weather.gov
-    # get geo_key @ ipstack.com
     geo_key = ""
     get_ip = requests.get('https://api.ipify.org?format=json')
     json_ip = json.loads(get_ip.text)
@@ -196,7 +201,7 @@ if args.verbose:
 
 home_dir = os.getenv("HOME")
 config_path = ("%s/.config/utfweather/utfweather.conf" % home_dir)
-cache_path = ("%s/.cache/utfweather/utfweather.conf" % home_dir)
+cache_path = ("%s/.cache/utfweather/utfweather.cache" % home_dir)
 
 # load config file
 cp = ConfigParser()
@@ -230,13 +235,12 @@ if args.toggle_forecast:
     with open(config_path, 'w') as config_file:
         cp.write(config_file)
 
-
     get_weather(config)
 
 else:
     # check if cache exists and is current
     if os.path.exists(cache_path):
-        mod_time = os.stat(cache_path).st_mtime
+        mod_time = int(os.stat(cache_path).st_mtime)
         current_time = int(time.time())
         cache_age = current_time - mod_time
 
@@ -246,7 +250,7 @@ else:
 
         if cache_age > int(config["cache_ageout"]):
             logging.debug("Cache old.. Getting current weather..")
-            results = get_weather(config)
+            result = get_weather(config)
 
         else:
             with open(cache_path, 'r') as cache_file:
@@ -256,4 +260,3 @@ else:
         result = get_weather(config)
 
     print(result)
-
