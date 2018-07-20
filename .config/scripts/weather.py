@@ -130,7 +130,7 @@ def get5day():
     forecast = requests.get(forecast)
     forecast = json.loads(forecast.text)
     d = defaultdict(dict)
-    for day in range(1,14):
+    for day in range(0,14):
         d["name"][day] = forecast["properties"]["periods"][day]["name"] 
         d["isDaytime"][day] = forecast["properties"]["periods"][day]["isDaytime"]
         d["desc"][day] = forecast["properties"]["periods"][day]["detailedForecast"]
@@ -145,10 +145,8 @@ def get5day():
     
     if d["isDaytime"][2]:
         message = ("%s - %s°F\t%s\n%s\n\n%s\t%s°F\t%s\t%s\n\t%s°F\t%s\t%s\n%s\t%s°F\t%s\t%s\n\t%s°F\t%s\t%s\n%s\t%s°F\t%s\t%s\n\t%s°F\t%s\t%s\n%s\t%s°F\t%s\t%s\n\t%s°F\t%s\t%s\n%s\t%s°F\t%s\t%s\n\t%s°F\t%s\t%s" % (d["name"][1], d["temp"][1], d["icon"][1], d["desc"][1], d["name"][2][:3], d["temp"][2], d["icon"][2], d["shrtdesc"][2], d["temp"][3], d["icon"][3], d["shrtdesc"][3], d["name"][4][:3], d["temp"][4], d["icon"][4], d["shrtdesc"][4], d["temp"][5], d["icon"][5], d["shrtdesc"][5], d["name"][6][:3], d["temp"][6], d["icon"][6], d["shrtdesc"][6], d["temp"][7], d["icon"][7], d["shrtdesc"][7], d["name"][8][:3], d["temp"][8], d["icon"][8], d["shrtdesc"][8], d["temp"][9], d["icon"][9], d["shrtdesc"][9], d["name"][10][:3], d["temp"][10], d["icon"][10], d["shrtdesc"][10], d["temp"][11], d["icon"][11], d["shrtdesc"][11]))
-
-        #message = ("%s - %s%s\n%s\n\n%s\t\t%s%s\t%s\n%s\t\t%s%s\t%s\n%s\t%s%s\t%s\n%s\t%s%s\t%s\n%s\t%s%s\t%s\n%s\t%s%s\t%s\n%s\t%s%s\t%s\n%s\t%s%s\t%s\n%s\t%s%s\t%s\n" % (d["name"][1], d["icon"][1], d["temp"][1], d["desc"][1],d["name"][2], d["icon"][2], d["temp"][2], d["shrtdesc"][2], d["name"][3], d["icon"][3], d["temp"][3], d["shrtdesc"][3],d["name"][4], d["icon"][4], d["temp"][4], d["shrtdesc"][4],d["name"][5], d["icon"][5], d["temp"][5], d["shrtdesc"][5],d["name"][6], d["icon"][6], d["temp"][6], d["shrtdesc"][6],d["name"][7], d["icon"][7], d["temp"][7], d["shrtdesc"][7],d["name"][8], d["icon"][8], d["temp"][8], d["shrtdesc"][8],d["name"][9], d["icon"][9], d["temp"][9], d["shrtdesc"][9],d["name"][10], d["icon"][10], d["temp"][10], d["shrtdesc"][10]))
     else: 
-        message = "test" 
+        message = ("%s - %s°F\t%s\n%s\n\n%s\t%s°F\t%s\t%s\n\t%s°F\t%s\t%s\n%s\t%s°F\t%s\t%s\n\t%s°F\t%s\t%s\n%s\t%s°F\t%s\t%s\n\t%s°F\t%s\t%s\n%s\t%s°F\t%s\t%s\n\t%s°F\t%s\t%s\n%s\t%s°F\t%s\t%s\n\t%s°F\t%s\t%s" % (d["name"][0], d["temp"][0], d["icon"][0], d["desc"][0], d["name"][1][:3], d["temp"][1], d["icon"][1], d["shrtdesc"][1], d["temp"][2], d["icon"][2], d["shrtdesc"][2], d["name"][3][:3], d["temp"][3], d["icon"][3], d["shrtdesc"][3], d["temp"][4], d["icon"][4], d["shrtdesc"][4], d["name"][5][:3], d["temp"][5], d["icon"][5], d["shrtdesc"][5], d["temp"][6], d["icon"][6], d["shrtdesc"][6], d["name"][7][:3], d["temp"][7], d["icon"][7], d["shrtdesc"][7], d["temp"][8], d["icon"][8], d["shrtdesc"][8], d["name"][9][:3], d["temp"][9], d["icon"][9], d["shrtdesc"][9], d["temp"][10], d["icon"][10], d["shrtdesc"][10]))
     return message
 
 def get_weather(config):
