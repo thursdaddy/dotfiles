@@ -1,13 +1,9 @@
 #!/bin/python
 
-## need api key from ipstack.com 
-## define as geo_key in get_geo()
-## will make configurable with zip
-## fonts are nerd-fonts-complete
-
 from urllib.parse import urlparse
 from configparser import ConfigParser
 from collections import defaultdict
+import zipcode
 import argparse
 import os
 import requests
@@ -108,7 +104,7 @@ def get_icon(icon, isDaytime):
        return result
 
 def wind_direction(winddir):
-    icons = { 
+    icons = {
             'N': "⭣",
             'NE': "⭩",
             'E': "⭠",
@@ -123,15 +119,13 @@ def wind_direction(winddir):
 
 def sendmessage(message):
     subprocess.Popen(['notify-send', "-t", "100000", message])
-    return
 
-def get5day():
-    forecast = (get_geo())
-    forecast = requests.get(forecast)
+def get5day(geolocation):
+    forecast = requests.get(geolocation)
     forecast = json.loads(forecast.text)
     d = defaultdict(dict)
     for day in range(0,14):
-        d["name"][day] = forecast["properties"]["periods"][day]["name"] 
+        d["name"][day] = forecast["properties"]["periods"][day]["name"]
         d["isDaytime"][day] = forecast["properties"]["periods"][day]["isDaytime"]
         d["desc"][day] = forecast["properties"]["periods"][day]["detailedForecast"]
         d["shrtdesc"][day] = forecast["properties"]["periods"][day]["shortForecast"]
@@ -142,19 +136,19 @@ def get5day():
         else:
             isDaytime = False
             d["icon"][day] = get_icon(forecast["properties"]["periods"][day]["icon"], isDaytime)
-    
+
     if d["isDaytime"][2]:
         message = ("%s - %s°F\t%s\n%s\n\n%s\t%s°F\t%s\t%s\n\t%s°F\t%s\t%s\n%s\t%s°F\t%s\t%s\n\t%s°F\t%s\t%s\n%s\t%s°F\t%s\t%s\n\t%s°F\t%s\t%s\n%s\t%s°F\t%s\t%s\n\t%s°F\t%s\t%s\n%s\t%s°F\t%s\t%s\n\t%s°F\t%s\t%s" % (d["name"][1], d["temp"][1], d["icon"][1], d["desc"][1], d["name"][2][:3], d["temp"][2], d["icon"][2], d["shrtdesc"][2], d["temp"][3], d["icon"][3], d["shrtdesc"][3], d["name"][4][:3], d["temp"][4], d["icon"][4], d["shrtdesc"][4], d["temp"][5], d["icon"][5], d["shrtdesc"][5], d["name"][6][:3], d["temp"][6], d["icon"][6], d["shrtdesc"][6], d["temp"][7], d["icon"][7], d["shrtdesc"][7], d["name"][8][:3], d["temp"][8], d["icon"][8], d["shrtdesc"][8], d["temp"][9], d["icon"][9], d["shrtdesc"][9], d["name"][10][:3], d["temp"][10], d["icon"][10], d["shrtdesc"][10], d["temp"][11], d["icon"][11], d["shrtdesc"][11]))
-    else: 
+    else:
         message = ("%s - %s°F\t%s\n%s\n\n%s\t%s°F\t%s\t%s\n\t%s°F\t%s\t%s\n%s\t%s°F\t%s\t%s\n\t%s°F\t%s\t%s\n%s\t%s°F\t%s\t%s\n\t%s°F\t%s\t%s\n%s\t%s°F\t%s\t%s\n\t%s°F\t%s\t%s\n%s\t%s°F\t%s\t%s\n\t%s°F\t%s\t%s" % (d["name"][0], d["temp"][0], d["icon"][0], d["desc"][0], d["name"][1][:3], d["temp"][1], d["icon"][1], d["shrtdesc"][1], d["temp"][2], d["icon"][2], d["shrtdesc"][2], d["name"][3][:3], d["temp"][3], d["icon"][3], d["shrtdesc"][3], d["temp"][4], d["icon"][4], d["shrtdesc"][4], d["name"][5][:3], d["temp"][5], d["icon"][5], d["shrtdesc"][5], d["temp"][6], d["icon"][6], d["shrtdesc"][6], d["name"][7][:3], d["temp"][7], d["icon"][7], d["shrtdesc"][7], d["temp"][8], d["icon"][8], d["shrtdesc"][8], d["name"][9][:3], d["temp"][9], d["icon"][9], d["shrtdesc"][9], d["temp"][10], d["icon"][10], d["shrtdesc"][10]))
     return message
 
 def get_weather(config):
     if config['forecast_type'] == "short":
-        forecast = (get_geo() + "/hourly")
+        forecast = (location() + "/hourly")
         forecast = requests.get(forecast)
         forecast = json.loads(forecast.text)
-    
+
         # set variables
         isDaytime = forecast["properties"]["periods"][0]["isDaytime"]
         icon = get_icon(forecast["properties"]["periods"][0]["icon"], isDaytime)
@@ -162,10 +156,10 @@ def get_weather(config):
         info = forecast["properties"]["periods"][0]["shortForecast"]
         result = ("%s°F %s %s" % (temp, icon, info))
     elif config['forecast_type'] == "long":
-        forecast = (get_geo())
+        forecast = (location())
         forecast = requests.get(forecast)
         forecast = json.loads(forecast.text)
-    
+
         # set variables
         isDaytime = forecast["properties"]["periods"][0]["isDaytime"]
         icon = get_icon(forecast["properties"]["periods"][0]["icon"], isDaytime)
@@ -179,27 +173,36 @@ def get_weather(config):
     with open(cache_path, 'w') as cache_file:
         logging.debug("Writing cache.")
         cache_file.write(result)
-    return result 
+    return result
 
-def get_geo():
-    # get geo location based on IP
-    # finds forecastOffice from weather.gov
-    geo_key = ""
-    get_ip = requests.get('https://api.ipify.org?format=json')
-    json_ip = json.loads(get_ip.text)
-    ip = json_ip["ip"]
+def location():
+    # Get geo location based on IP
+    if config['use_geoloc'] == "0":
+        zipcodes = config['zipcode']
+        city = zipcode.isequal(zipcodes)
+        logging.debug("USING CONFIGURED ZIP CODE: %s" % zipcodes)
+        geojson = requests.get("https://api.weather.gov/points/%s,%s" % (city.lat, city.lng))
+        geojson = json.loads(geojson.text)
+        geolocation = geojson["properties"]["forecast"]
+        city = geojson["properties"]["relativeLocation"]["properties"]["city"]
+        state = geojson["properties"]["relativeLocation"]["properties"]["state"]
 
-    # get current GeoLocation
-    json_geo = requests.get("http://api.ipstack.com/%s?access_key=%s" % (ip, geo_key))
-    json_geo = json.loads(json_geo.text)
-    geo_lat = json_geo["latitude"]
-    geo_long = json_geo["longitude"]
-    geo_loc = ("%s,%s" % (geo_lat, geo_long))
-    
-    # get forecastOffice URL
-    geo_base = requests.get("https://api.weather.gov/points/%s" % geo_loc)
-    geojson = json.loads(geo_base.text)
-    geolocation = geojson["properties"]["forecast"]    
+        return geolocation
+
+    else:
+        logging.debug("ATTEMPTING TO GEO LOCATE BASED ON IP...")
+        geo_loc = requests.get('https://ipinfo.io/json')
+        geo_loc = json.loads(geo_loc.text)
+        geo_loc = geo_loc["loc"]
+
+        # Get weather.gov Forecast Office URL
+        logging.debug("WEATHER.GOV ENTRY URL: https://api.weather.gov/points/%s" % geo_loc)
+        geojson = requests.get("https://api.weather.gov/points/%s" % geo_loc)
+        geojson = json.loads(geojson.text)
+        city = geojson["properties"]["relativeLocation"]["properties"]["city"]
+        state = geojson["properties"]["relativeLocation"]["properties"]["state"]
+        geolocation = geojson["properties"]["forecast"]
+        logging.debug("WEATHER.GOV GRID POINTS URL: %s" % geolocation)
 
     return geolocation
 
@@ -217,20 +220,35 @@ home_dir = os.getenv("HOME")
 config_path = ("%s/.config/utfweather/utfweather.conf" % home_dir)
 cache_path = ("%s/.cache/utfweather/utfweather.cache" % home_dir)
 
+if not os.path.exists("%s/.cache/utfweather" % home_dir):
+    os.makedirs("%s/.cache/utfweather" % home_dir)
+
 # load config file
 cp = ConfigParser()
+
+cp.add_section('general')
+cp.set('general', 'use_geoloc', '0')
+cp.set('general', 'zipcode', '10001')
+cp.set('general', 'cache_ageout', '900')
+cp.set('general', 'forecast_type', 'short')
+with open('config_path', 'w') as configfile:
+    cp.write(configfile)
+
 cp.read(config_path)
 
 logging.debug("Loaded the following settings:")
 logging.debug(dict(cp.items('general')))
 
 config = {
+        'use_geoloc': cp.get('general', 'use_geoloc'),
+        'zipcode': cp.get('general', 'zipcode'),
         'forecast_type': cp.get('general', 'forecast_type'),
         'cache_ageout': cp.get('general', 'cache_ageout')
         }
 
 if args.notify_send:
-    message = get5day()
+    geolocation = location()
+    message = get5day(geolocation)
     sendmessage(message)
     exit
 
