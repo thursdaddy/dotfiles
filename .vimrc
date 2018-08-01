@@ -31,6 +31,8 @@ filetype plugin indent on
 set pastetoggle=<F2>
 nnoremap <F1> :set nonumber! norelativenumber!<CR>
 
+let g:notes_directories = ['~/Docs/Notes/']
+
 " NERDTree CONFIG
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeQuitOnOpen=1
