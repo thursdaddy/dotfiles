@@ -66,7 +66,7 @@
     F1 
 
 #dock
-"bash -c "/home/thurs/.config/scripts/dock.sh""
+"bash -c "/home/thurs/.config/polybar/launch.sh""
     m:0x0 + c:74
     F8 
 

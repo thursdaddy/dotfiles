@@ -97,6 +97,42 @@ tray-maxsize = 18
 tray-detached = false
 wm-restack = i3
 
+[bar/vert]
+monitor = ${env:MONITOR:}
+width = 100%
+height = 30
+offset-x = 0%
+offset-y = 0%
+radius = 0.0
+fixed-center = true
+bottom = true 
+
+modules-left = 
+modules-center = i3
+modules-right = 
+
+# sets bar to transparent 
+background = #00000000
+foreground = ${colors.foreground}
+
+padding-left = 1
+padding-right = 1
+
+module-margin-right = 1
+module-margin-left = 1
+
+font-0 = "Hack:fontformat=truetype:size=9;1"
+font-1 = "Font Awesome 5 Free:style=Regularpixelsize=11;1"
+font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=11;1"
+font-3 = "Noto Sans Symbols2:style=Regular:pixelsize=16;4"
+font-4 = "FuraMono Nerd Font Mono:style=Regular:pixelsize=22;2"
+
+#tray-position = right
+#tray-padding = 10
+#tray-transparent = true
+#tray-maxsize = 18
+#tray-detached = false
+wm-restack = i3
 ### MODULES ###
 
 [module/i3]
@@ -175,14 +211,12 @@ label-active = %token%
 format-padding = 1
 label = %time%
 
-
 [module/py_date]
 type = custom/script
 interval = 1
 exec = ~/.config/scripts/date.py
 click-left = ~/.config/scripts/date.py -t
 click-right = ~/.config/scripts/date.py -n
-
 
 [module/title]
 type = internal/xwindow
