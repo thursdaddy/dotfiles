@@ -1,4 +1,4 @@
-#!/bin/python
+#!/usr/local/bin/python3.6
 
 from urllib.parse import urlparse
 from configparser import ConfigParser
@@ -226,13 +226,14 @@ if not os.path.exists("%s/.cache/utfweather" % home_dir):
 # load config file
 cp = ConfigParser()
 
-cp.add_section('general')
-cp.set('general', 'use_geoloc', '0')
-cp.set('general', 'zipcode', '10001')
-cp.set('general', 'cache_ageout', '900')
-cp.set('general', 'forecast_type', 'short')
-with open('config_path', 'w') as configfile:
-    cp.write(configfile)
+if not os.path.exists("%s/.cache/utfweather" % home_dir):
+    cp.add_section('general')
+    cp.set('general', 'use_geoloc', '0')
+    cp.set('general', 'zipcode', '10001')
+    cp.set('general', 'cache_ageout', '900')
+    cp.set('general', 'forecast_type', 'short')
+    with open('config_path', 'w') as configfile:
+        cp.write(configfile)
 
 cp.read(config_path)
 
