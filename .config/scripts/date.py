@@ -6,7 +6,6 @@ import os
 import datetime
 import subprocess
 import calendar
-import collections
 
 def sendmessage(message):
     subprocess.Popen(['notify-send', "-t", "10000", message])
