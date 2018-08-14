@@ -1,78 +1,72 @@
-#!/usr/bin/env sh
+#!/bin/bash
+
+## MAIN WALLPAPER
+WALLPAPER='/home/thurs/Pictures/wallpapers/blue-sky-mountain.jpg'
+## BLACK WALLPAPER FOR ROTATED MONITOR
+BLACKBG='/home/thurs/Pictures/wallpapers/black.png'
+
+MONLIST=/tmp/monlist
 
 killem () {
     killall -q polybar
     while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 }
 
-get_monitors () {
-    xrandr --query | grep -w "connected" | cut -f1 -d " " > /tmp/monlist
+get_connected_monitors () {
+    xrandr -q | grep -w "connected" | cut -f1 -d" " > $MONLIST
+    MONCOUNT=$(wc -l < $MONLIST)
+    MAIN=$(sed -n '1p' < $MONLIST)
+    SECOND=$(sed -n '2p' < $MONLIST)
+    THIRD=$(sed -n '3p' < $MONLIST)
 }
 
-turn_off () (
-    xrandr --query | grep -w "disconnected" | cut -f1 -d " " | grep -v eDP1
-)
-
-killem
-get_monitors
-
-if [[ $(wc -l < /tmp/monlist) -ge 3 ]]
-then
-    MULTI=1
-else
-    MULTI=0
-fi
-
-while read line
-do
-    MONITOR=$line
-    if [[ $MONITOR = 'eDP1' ]]; then
-        xrandr --output $MONITOR --auto
-        MONITOR=$MONITOR polybar -q --reload main &
-    fi
-    if [[ $MONITOR = 'DP2' ]]; then
-        if [ -z $1 ]; then
-            xrandr --output $MONITOR --auto --left-of eDP1
+set_polybar () {
+    while read line
+    do
+        MONITOR=$line
+        if [ $MONITOR = 'HDMI1' -a $MONCOUNT -eq 3 ]; then
+            MONITOR=$MONITOR polybar -q --reload vert &
+        elif [ $MONITOR = 'HDMI1' ]; then
             MONITOR=$MONITOR polybar -q --reload side &
-        else
-        xrandr --output $MONITOR --auto --$1-of eDP1
-        MONITOR=$MONITOR polybar -q --reload side &
+        elif [ $MONITOR = 'DP2' -o $MONITOR = 'DP1' ]; then
+            MONITOR=$MONITOR polybar -q --reload side &
+        elif [ $MONITOR = 'eDP1' ]; then
+            MONITOR=$MONITOR polybar -q --reload main &
         fi
+    done < $MONLIST
+}
+
+dock () {
+    xrandr --output $MAIN --auto
+    if [ $MONCOUNT = '3' ]; then
+        xrandr --output $MAIN --auto --output $SECOND --auto --left-of $MAIN --output $THIRD --auto -left-of $SECOND --rotate left
+        feh --bg-scale $WALLPAPER --bg-scale $BLACKBG --bg-scale $WALLPAPER
+    elif [ $MONCOUNT = '2' ]; then
+        xrandr --output $MAIN --auto --output $SECOND --auto --left-of $MAIN 
+        feh --bg-scale $WALLPAPER
+    elif [ $MONCOUNT = '1' ]; then
+        xrandr --output $MAIN --auto 
+        feh --bg-scale $WALLPAPER
     fi
-    if [[ $MONITOR = 'HDMI1' ]]; then
-        if [ -z $1 ]; then
-            if [[ $MULTI = '1' ]]; then
-                echo $MULTI $MONITOR LEFT OF $(xrandr --query | grep -w "connected" | cut -f1 -d " " | sed '1d;$d')
-                xrandr --output $MONITOR --auto --rotate left --left-of $(xrandr --query | grep -w "connected" | cut -f1 -d " " | sed '1d;$d')
-                MONITOR=$MONITOR polybar -q --reload vert &
-            elif [[ $MULTI = '0' ]]; then
-                echo $MULTI $MONITOR LEFT OF $(xrandr --query | grep -w "connected" | cut -f1 -d " " | head -n1)
-                xrandr --output $MONITOR --auto --left-of $(xrandr --query | grep -w "connected" | cut -f1 -d " " | head -n1)
-                MONITOR=$MONITOR polybar -q --reload side &
-            fi
-        else
-            if [[ $MULTI = '1' ]]; then
-                echo $MULTI $MONITOR $1 OF $(xrandr --query | grep -w "connected" | cut -f1 -d " " | sed '1d;$d')
-                xrandr --output $MONITOR --auto --rotate left --$1-of $(xrandr --query | grep -w "connected" | cut -f1 -d " " | sed '1d;$d')
-                MONITOR=$MONITOR polybar -q --reload side &
-            fi
-        echo $MULTI $MONITOR $1 OF $(xrandr --query | grep -w "connected" | cut -f1 -d " " | head -n1)
-        xrandr --output $MONITOR --auto --$1-of $(xrandr --query | grep -w "connected" | cut -f1 -d " " | head -n1)
-        MONITOR=$MONITOR polybar -q --reload side &
+}
+
+disconnect_monitors () {
+    DISCONNECTED=$(xrandr --query | grep -w "disconnected" | cut -f1 -d" ")
+    while IFS= read -r line
+    do
+        MONITOR=$line
+        if [ $MONITOR = 'HDMI1' ]; then
+            xrandr --output $MONITOR --off
+        elif [ $MONITOR = 'DP2' -o $MONITOR = 'DP1' ]; then
+            xrandr --output $MONITOR --off
         fi
-    fi
-    nitrogen --restore
-done < /tmp/monlist
+    done <<< $DISCONNECTED    
+}
+
+disconnect_monitors
+get_connected_monitors
+killem
+dock
+set_polybar
 
 rm /tmp/monlist
-
-DIS_MON=$(turn_off)
-while IFS= read -r line
-do
-    MONITOR=$line
-    if [[ $MONITOR = 'DP2' ]]; then
-        xrandr --output $MONITOR --off
-    elif [[ $MONITOR = 'HDMI1' ]]; then
-        xrandr --output $MONITOR --off
-    fi
-done <<< $DIS_MON
