@@ -1,16 +1,7 @@
 #!/bin/bash
 
-## MAIN WALLPAPER
 WALLPAPER='/home/thurs/Pictures/wallpapers/blue-sky-mountain.jpg'
-## BLACK WALLPAPER FOR ROTATED MONITOR
-BLACKBG='/home/thurs/Pictures/wallpapers/black.png'
-
 MONLIST=/tmp/monlist
-
-killem () {
-    killall -q polybar
-    while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
-}
 
 get_connected_monitors () {
     xrandr -q | grep -w "connected" | cut -f1 -d" " > $MONLIST
@@ -21,12 +12,14 @@ get_connected_monitors () {
 }
 
 set_polybar () {
+    killall -q polybar
+    while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
     while read line
     do
         MONITOR=$line
         if [ $MONITOR = 'HDMI1' -a $MONCOUNT -eq 3 ]; then
             MONITOR=$MONITOR polybar -q --reload vert &
-        elif [ $MONITOR = 'HDMI1' ]; then
+        elif [ MONITOR = 'HDMI1' ]; then
             MONITOR=$MONITOR polybar -q --reload side &
         elif [ $MONITOR = 'DP2' -o $MONITOR = 'DP1' ]; then
             MONITOR=$MONITOR polybar -q --reload side &
@@ -37,17 +30,13 @@ set_polybar () {
 }
 
 dock () {
-    xrandr --output $MAIN --auto
     if [ $MONCOUNT = '3' ]; then
-        xrandr --output $MAIN --auto --output $SECOND --auto --left-of $MAIN --output $THIRD --auto -left-of $SECOND --rotate left
-        feh --bg-scale $WALLPAPER --bg-scale $BLACKBG --bg-scale $WALLPAPER
+        xrandr --output $MAIN --auto --output $SECOND --auto --left-of $MAIN --output $THIRD --auto --left-of $SECOND --rotate left
     elif [ $MONCOUNT = '2' ]; then
         xrandr --output $MAIN --auto --output $SECOND --auto --left-of $MAIN 
-        feh --bg-scale $WALLPAPER
-    elif [ $MONCOUNT = '1' ]; then
-        xrandr --output $MAIN --auto 
-        feh --bg-scale $WALLPAPER
     fi
+    xrandr --output $MAIN --auto
+    feh --bg-scale $WALLPAPER
 }
 
 disconnect_monitors () {
@@ -65,7 +54,6 @@ disconnect_monitors () {
 
 disconnect_monitors
 get_connected_monitors
-killem
 dock
 set_polybar
 
