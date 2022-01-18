@@ -1,4 +1,5 @@
 syntax on
+set nocompatible
 
 set relativenumber
 set guicursor=
@@ -22,11 +23,8 @@ set termguicolors
 set scrolloff=8
 set noshowmode
 set completeopt-=preview
-
 set cmdheight=1
-
 set updatetime=50
-
 set shortmess+=c
 "set colorcolumn=80
 
@@ -50,11 +48,11 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-dispatch'
-Plug 'morhetz/gruvbox'
 Plug 'edkolev/tmuxline.vim'
 Plug 'pearofducks/ansible-vim'
 Plug 'tpope/vim-rhubarb'
 Plug 'stsewd/fzf-checkout.vim'
+Plug 'machakann/vim-highlightedyank'
 if has('nvim') || has('patch-8.0.902')
   Plug 'mhinz/vim-signify'
 else
@@ -64,37 +62,28 @@ endif
 call plug#end()
 
 let g:ansible_with_keywords_highlight = 'Constant'
-
+let g:highlightedyank_highlight_duration = 1000
 
 " THEME
 if !exists('g:airline_theme_map')
    let g:airline_theme_map = {
-      \ 'gruvbox.*': 'tomorrow',
+      \ 'gruvbox.*': 'owo',
       \ }
 else
-   let g:airline_theme_map['gruvbox.*'] = 'tomorrow'
+   let g:airline_theme_map['gruvbox.*'] = 'owo'
 endif
-let g:airline_theme='base16_gruvbox_dark_hard'
-
+let g:airline_theme='owo'
 
 autocmd vimenter * ++nested hi Normal ctermbg=NONE guibg=NONE
-
-set background=dark
-highlight Colorcolumn ctermbg=NONE guibg=NONE
-highlight Normal ctermbg=NONE guibg=NONE
 
 colorscheme gruvbox
 let g:gruvbox_termcolors = 256
 let g:gruvbox_contrast_dark = 'hard'
+set background=dark
 
 " BINDS
 let mapleader = " "
 
-let g:netrw_browse_split = 2
-let g:netrw_banner = 0
-let g:netrw_winsize = 25
-
-" KEY MAPPINGS
 nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>phw :h <C-R>=expand("<cword>")<CR><CR>
@@ -105,25 +94,28 @@ nnoremap <leader>l :wincmd l<CR>
 nnoremap <leader>u :UndotreeShow<CR>
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 nnoremap <Leader>ps :Rg<SPACE>
-nnoremap <C-p> :GFiles<CR>
-nnoremap <C-o> :Files<CR>
 nnoremap <Leader>pf :Files<CR>
 nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<CR>
 nnoremap <Leader>+ :vertical resize +5<CR>
 nnoremap <Leader>- :vertical resize -5<CR>
 nnoremap <Leader>rl :so ~/.vimrc<CR>
+nmap <C-e> :Lexplore<CR>
+nnoremap <C-p> :GFiles<CR>
+nnoremap <C-o> :Files<CR>
+nmap <leader>o :GBrowse<CR>
 
 " GITFUGITIVE
-nmap <leader>gst :G<CR>
-nmap <leader>gd :G -p diff<CR>
-nmap <leader>gaa :G add .<CR>
-nmap <leader>ga :G add<CR>
-nmap <leader>gcmsg :G commit<CR>
+nmap <leader>g :Git<CR>
+nmap <leader>gd :Git -p diff<CR>
+nmap <leader>gaa :Git add .<CR>
+nmap <leader>ga :Git add<CR>
+nmap <leader>gp :Git push<CR>
+nmap <leader>gc :Git commit<CR>
 nmap <leader>gb :GBranches<CR>
+nmap <leader>g, :diffget //2<CR>
+nmap <leader>g. :diffget //3<CR>
+nmap <leader><esc> <nop><CR>
 
-nmap <C-e> :Lexplore<CR>
-
-let g:fugitive_gitlab_domains = ['https://git.thurs.pw']
 
 " toggle relative number
 nnoremap <silent> <leader>n :set relativenumber! <bar> set nu!<CR>
@@ -134,31 +126,12 @@ fun! TrimWhitespace()
     keeppatterns %s/\s\+$//e
     call winrestview(l:save)
 endfun
-
 autocmd BufWritePre * :call TrimWhitespace()
 
+" NERDTree, jk its netrw
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_winsize = 25
 set autochdir
-"function! ToggleVExplorer()
-"  if exists("t:expl_buf_num")
-"      let expl_win_num = bufwinnr(t:expl_buf_num)
-"      if expl_win_num != -1
-"          let cur_win_nr = winnr()
-"          exec expl_win_num . 'wincmd w'
-"          close
-"          exec cur_win_nr . 'wincmd w'
-"          unlet t:expl_buf_num
-"      else
-"          unlet t:expl_buf_num
-"      endif
-"  else
-"      exec '1wincmd w'
-"      Vexplore
-"      let t:expl_buf_num = bufnr("%")
-"  endif
-"endfunction
-"map <silent> <C-E> :call ToggleVExplorer()<CR>
