@@ -36,6 +36,8 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 map \ zz
+map Y y$
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'gruvbox-community/gruvbox'
