@@ -1,4 +1,3 @@
-syntax on                   " syntax highlighting
 set hidden
 set nocompatible            " disable compatibility to old-time vi
 set showmatch               " show matching
@@ -22,6 +21,9 @@ set ttyfast                 " Speed up scrolling in Vim
 set noswapfile            " disable creating swap file
 set backupdir=~/.cache/vim " Directory to store backup files.
 set smartcase
+set splitright
+set nojoinspaces
+set listchars=tab:▸\ ,trail:·
 set list
 set scrolloff=4
 set sidescrolloff=4
@@ -31,38 +33,35 @@ let mapleader = "\<space>"
 
 nmap <leader>ve :edit ~/.config/nvmim/init.vim<CR>
 nmap <leader>vr :source ~/.config/nvim/init.vim<CR>
-map gf :edit >cfile><cr>
+
+nmap <leader>k :nohlsearch<CR>
+nmap <leader>Q :bufdo bdelete<cr>
 
 " Reselect visual selection after indent
 vnoremap < <gv
 vnoremap > >gv
 
 vnoremap y myy`y
+vnoremap Y myY`y
+nnoremap Y y$
 
+" Keep it centered
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap J mzJ`z
+
+" Quicky escape to normal mode
+imap jj <esc>
+
+" Add <char> to end of line
 imap ,, <Esc>A,<Esc>
 imap ;; <Esc>A;<Esc>
 
+" sudo save
 cmap w!! %!sudo tee > /dev/null %
 
-" GITFUGITIVE
-nmap <leader>g :Git<CR>
-nmap <leader>gd :Git -p diff<CR>
-nmap <leader>gaa :Git add .<CR>
-nmap <leader>ga :Git add<CR>
-nmap <leader>gp :Git push<CR>
-nmap <leader>gc :Git commit<CR>
-nmap <leader>gb :GBranches<CR>
-nmap <leader>g, :diffget //2<CR>
-nmap <leader>g. :diffget //3<CR>
-nmap <leader><esc> <nop><CR>
-
-" Find files using Telescope command-line sugar.
-nnoremap <leader>ff <cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files,prompt_prefix=><cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-
-silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
+" Open file even if non-existent
+map gf :edit <cfile><cr>
 
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
@@ -70,37 +69,28 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin('~/.vim/plugged')
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-commentary'
-Plug 'vim-utils/vim-man'
-Plug 'projekt0n/github-nvim-theme'
-Plug 'gruvbox-community/gruvbox'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-lua/telescope.nvim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'tweekmonster/gofmt.vim'
-Plug 'mbbill/undotree'
-Plug 'sheerun/vim-polyglot'
-Plug 'edkolev/tmuxline.vim'
-Plug 'pearofducks/ansible-vim'
-Plug 'stsewd/fzf-checkout.vim'
-Plug 'machakann/vim-highlightedyank'
-if has('nvim') || has('patch-8.0.902')
-  Plug 'mhinz/vim-signify'
-else
-  Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
-endif
+call plug#begin(data_dir . '/plugins')
+
+source ~/.config/nvim/plugins/fugitive.vim
+source ~/.config/nvim/plugins/surround.vim
+source ~/.config/nvim/plugins/repeat.vim
+source ~/.config/nvim/plugins/commentary.vim
+source ~/.config/nvim/plugins/themes.vim
+source ~/.config/nvim/plugins/telescope.vim
+source ~/.config/nvim/plugins/airline.vim
+source ~/.config/nvim/plugins/fzf.vim
+source ~/.config/nvim/plugins/nerdtree.vim
+source ~/.config/nvim/plugins/coc.vim
+source ~/.config/nvim/plugins/undotree.vim
+source ~/.config/nvim/plugins/polyglot.vim
+source ~/.config/nvim/plugins/tmuxline.vim
+source ~/.config/nvim/plugins/ansible.vim
+source ~/.config/nvim/plugins/highlightedyank.vim
+source ~/.config/nvim/plugins/signify.vim
+source ~/.config/nvim/plugins/smooth-scroll.vim
+source ~/.config/nvim/plugins/floaterm.vim
 
 call plug#end()
 
+" Set colorscheme from themes.vim
 colorscheme github_dark_default
-
