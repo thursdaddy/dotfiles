@@ -1,0 +1,4 @@
+#!/usr/bin/bash
+
+tmux new -s htop -d -n htop 'htop'
+tmux a -t htop

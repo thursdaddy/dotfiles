@@ -1,0 +1,168 @@
+{
+    "border": "pixel",
+    "floating": "auto_off",
+    "layout": "splith",
+    "marks": [],
+    "percent": 1,
+    "type": "con",
+    "nodes": [
+        {
+            "border": "pixel",
+            "floating": "auto_off",
+            "layout": "tabbed",
+            "marks": [],
+            "percent": null,
+            "type": "con",
+            "nodes": [
+                {
+                    "border": "pixel",
+                    "floating": "auto_off",
+                    "layout": "splitv",
+                    "marks": [],
+                    "percent": 1,
+                    "type": "con",
+                    "nodes": [
+						{
+						    "border": "pixel",
+						    "current_border_width": 1,
+						    "floating": "user_off",
+						    "geometry": {
+						       "height": 1386,
+						       "width": 1263,
+						       "x": 1285,
+						       "y": 10
+						    },
+						    "marks": [],
+						    "name": "Psensor - Temperature Monitor",
+						    "percent": 0.0575660122281633,
+						    "swallows": [
+						       {
+						        "class": "^Psensor$",
+						        "instance": "^psensor$"
+						       }
+						    ],
+						    "type": "con"
+						},
+                        {
+                            "border": "pixel",
+                            "current_border_width": 1,
+                            "floating": "auto_off",
+                            "geometry": {
+                               "height": 410,
+                               "width": 654,
+                               "x": 0,
+                               "y": 0
+                            },
+                            "marks": [],
+                            "name": "1:htop",
+                            "percent": 0.203960949950593,
+                            "swallows": [
+                               {
+                                "class": "^Alacritty$",
+                                "title": "^1\\:htop$"
+                               }
+                            ],
+                            "type": "con"
+                        },
+                        {
+                            "border": "pixel",
+                            "floating": "auto_off",
+                            "layout": "tabbed",
+                            "marks": [],
+                            "percent": 0.293333333333333,
+                            "type": "con",
+                            "nodes": [
+                                {
+                                    "border": "pixel",
+                                    "current_border_width": 1,
+                                    "floating": "auto_off",
+                                    "geometry": {
+                                       "height": 1440,
+                                       "width": 943,
+                                       "x": 0,
+                                       "y": 0
+                                    },
+                                    "marks": [],
+                                    "name": "#ansible — The Lounge — Mozilla Firefox",
+                                    "percent": 0.5,
+                                    "swallows": [
+                                       {
+                                        "class": "^firefox$",
+                                        "instance": "^Navigator$",
+                                        "window_role": "^browser$"
+                                       }
+                                    ],
+                                    "type": "con"
+                                },
+                                {
+                                    "border": "none",
+                                    "current_border_width": 1,
+                                    "floating": "auto_off",
+                                    "geometry": {
+                                       "height": 756,
+                                       "width": 540,
+                                       "x": 0,
+                                       "y": 0
+                                    },
+                                    "marks": [],
+                                    "name": "Cawbird - @thursdaddy",
+                                    "percent": 0.5,
+                                    "swallows": [
+                                       {
+                                        "class": "^Cawbird$",
+                                        "instance": "^cawbird$"
+                                       }
+                                    ],
+                                    "type": "con"
+                                }
+                            ]
+                        },
+                        {
+                            "border": "pixel",
+                            "current_border_width": 1,
+                            "floating": "auto_off",
+                            "geometry": {
+                               "height": 620,
+                               "width": 1418,
+                               "x": 3851,
+                               "y": 2171
+                            },
+                            "marks": [],
+                            "name": "#salad-dressing - Discord",
+                            "percent": 0.503333333333333,
+                            "swallows": [
+                               {
+                                "class": "^discord$",
+                                "instance": "^discord$"
+                               }
+                            ],
+                            "type": "con"
+                        },
+                        {
+                            "border": "pixel",
+                            "current_border_width": 1,
+                            "floating": "auto_off",
+                            "geometry": {
+                               "height": 620,
+                               "width": 1418,
+                               "x": 3851,
+                               "y": 2171
+                            },
+                            "marks": [],
+                            "name": "Discord",
+                            "percent": 0.523333333333333,
+                            "swallows": [
+                               {
+                                "class": "^discord$",
+                                "instance": "^discord$"
+                               }
+                            ],
+                            "type": "con"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+

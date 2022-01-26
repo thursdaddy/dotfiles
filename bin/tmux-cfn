@@ -1,0 +1,9 @@
+#!/usr/bin/bash
+
+tmux new -s cfn -d -n container -c /home/thurs/projects '_coderunner'
+
+tmux neww -t cfn: -n code -d -c /home/thurs/projects/cloud &>/dev/null
+tmux neww -t cfn: -n ssh -d &>/dev/null
+
+tmux a -t cfn
+

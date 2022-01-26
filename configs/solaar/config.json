@@ -1,0 +1,43 @@
+{
+  "4079:61F7420E": {
+    "_modelId": "4079C0880000",
+    "_name": "G Pro Wireless Gaming Mouse",
+    "_serial": "61F7420E",
+    "_unitId": "61F7420E",
+    "dpi": 1600,
+    "report_rate": 1,
+    "thumb-scroll-invert": false,
+    "thumb-scroll-mode": false
+  },
+  "4082:BDF730B5": {
+    "_modelId": "B02340820000",
+    "_name": "MX Master 3 Wireless Mouse",
+    "_serial": "BDF730B5",
+    "_unitId": "BDF730B5",
+    "divert-keys": {
+      "195": 0,
+      "196": 0,
+      "82": 0,
+      "83": 0,
+      "86": 0
+    },
+    "dpi": 1000,
+    "dpi-sliding": 0,
+    "hires-smooth-invert": false,
+    "hires-smooth-resolution": true,
+    "mouse-gestures": 0,
+    "reprogrammable-keys": {
+      "195": 195,
+      "196": 196,
+      "80": 80,
+      "81": 81,
+      "82": 82,
+      "83": 83,
+      "86": 86
+    },
+    "smart-shift": 5,
+    "thumb-scroll-invert": false,
+    "thumb-scroll-mode": false
+  },
+  "_version": "1.1.0"
+}
