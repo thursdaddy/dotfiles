@@ -89,6 +89,7 @@ source ~/.config/nvim/plugins/highlightedyank.vim
 source ~/.config/nvim/plugins/signify.vim
 source ~/.config/nvim/plugins/smooth-scroll.vim
 source ~/.config/nvim/plugins/floaterm.vim
+source ~/.config/nvim/plugins/ale.vim
 
 call plug#end()
 
