@@ -1,5 +1,5 @@
 {
-  "4079:61F7420E": {
+  "4079:52239608": {
     "_modelId": "4079C0880000",
     "_name": "G Pro Wireless Gaming Mouse",
     "_serial": "61F7420E",
@@ -39,5 +39,5 @@
     "thumb-scroll-invert": false,
     "thumb-scroll-mode": false
   },
-  "_version": "1.1.0"
+  "_version": "1.1.1"
 }
