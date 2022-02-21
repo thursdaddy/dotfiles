@@ -61,6 +61,8 @@ imap jj <esc>
 " Add <char> to end of line
 imap ,, <Esc>A,<Esc>
 imap ;; <Esc>A;<Esc>
+imap '' <Esc>A'<Esc>
+imap "" <Esc>A"<Esc>
 
 " sudo save
 cmap w!! %!sudo tee > /dev/null %
