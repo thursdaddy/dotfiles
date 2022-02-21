@@ -31,6 +31,11 @@ set sidescrolloff=4
 " Bindings
 let mapleader = "\<space>"
 
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
 nmap <leader>ve :edit ~/.config/nvmim/init.vim<CR>
 nmap <leader>vr :source ~/.config/nvim/init.vim<CR>
 
@@ -71,27 +76,27 @@ endif
 
 call plug#begin(data_dir . '/plugins')
 
-source ~/.config/nvim/plugins/fugitive.vim
-source ~/.config/nvim/plugins/surround.vim
-source ~/.config/nvim/plugins/repeat.vim
-source ~/.config/nvim/plugins/commentary.vim
-source ~/.config/nvim/plugins/themes.vim
-source ~/.config/nvim/plugins/telescope.vim
 source ~/.config/nvim/plugins/airline.vim
-source ~/.config/nvim/plugins/fzf.vim
-source ~/.config/nvim/plugins/nerdtree.vim
-source ~/.config/nvim/plugins/coc.vim
-source ~/.config/nvim/plugins/undotree.vim
-source ~/.config/nvim/plugins/polyglot.vim
-source ~/.config/nvim/plugins/tmuxline.vim
+source ~/.config/nvim/plugins/ale.vim
 source ~/.config/nvim/plugins/ansible.vim
+source ~/.config/nvim/plugins/coc.vim
+source ~/.config/nvim/plugins/commentary.vim
+source ~/.config/nvim/plugins/floaterm.vim
+source ~/.config/nvim/plugins/fugitive.vim
+source ~/.config/nvim/plugins/fzf.vim
 source ~/.config/nvim/plugins/highlightedyank.vim
+source ~/.config/nvim/plugins/nerdtree.vim
+source ~/.config/nvim/plugins/polyglot.vim
+source ~/.config/nvim/plugins/repeat.vim
+source ~/.config/nvim/plugins/telescope.vim
+source ~/.config/nvim/plugins/themes.vim
+source ~/.config/nvim/plugins/tmuxline.vim
 source ~/.config/nvim/plugins/signify.vim
 source ~/.config/nvim/plugins/smooth-scroll.vim
-source ~/.config/nvim/plugins/floaterm.vim
-source ~/.config/nvim/plugins/ale.vim
+source ~/.config/nvim/plugins/surround.vim
+source ~/.config/nvim/plugins/undotree.vim
 
 call plug#end()
 
 " Set colorscheme from themes.vim
-colorscheme github_dark_default
+colorscheme ayu
