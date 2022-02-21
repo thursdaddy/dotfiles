@@ -88,12 +88,12 @@ source ~/.config/nvim/plugins/highlightedyank.vim
 source ~/.config/nvim/plugins/nerdtree.vim
 source ~/.config/nvim/plugins/polyglot.vim
 source ~/.config/nvim/plugins/repeat.vim
-source ~/.config/nvim/plugins/telescope.vim
-source ~/.config/nvim/plugins/themes.vim
-source ~/.config/nvim/plugins/tmuxline.vim
 source ~/.config/nvim/plugins/signify.vim
 source ~/.config/nvim/plugins/smooth-scroll.vim
 source ~/.config/nvim/plugins/surround.vim
+source ~/.config/nvim/plugins/telescope.vim
+source ~/.config/nvim/plugins/themes.vim
+source ~/.config/nvim/plugins/tmuxline.vim
 source ~/.config/nvim/plugins/undotree.vim
 
 call plug#end()
