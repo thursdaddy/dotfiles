@@ -36,7 +36,7 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-nmap <leader>ve :edit ~/.config/nvmim/init.vim<CR>
+nmap <leader>ve :edit ~/.config/nvim/init.vim<CR>
 nmap <leader>vr :source ~/.config/nvim/init.vim<CR>
 
 nmap <leader>k :nohlsearch<CR>
@@ -69,6 +69,14 @@ cmap w!! %!sudo tee > /dev/null %
 
 " Open file even if non-existent
 map gf :edit <cfile><cr>
+
+" Whitespace Trimmer
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+autocmd BufWritePre * :call TrimWhitespace()
 
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
