@@ -46,6 +46,8 @@ autoload -U compinit
 
 # command-line navigation
 bindkey -e
+bindkey '[C' forward-word
+bindkey '[D' backward-word
 
 bindkey '^r' history-incremental-search-backward
 bindkey '^R' history-incremental-pattern-search-backward
