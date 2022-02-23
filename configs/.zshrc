@@ -24,8 +24,8 @@ TERM="xterm-256color"
 
 plugins=(history-substring-search ansible history systemd vagrant alias-finder you-should-use sudo tmux)
 source $ZSH/oh-my-zsh.sh
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-
+source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
+source ~/.bin/tmuxsre-completion.bash
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -62,10 +62,10 @@ alias vim=nvim
 alias virsh="EDITOR=vim virsh"
 
 # Copy/Pasta
-alias pbcopy='xsel --clipboard --input'
-alias pbpaste='xsel --clipboard --output'
+# alias pbcopy='xsel --clipboard --input'
+# alias pbpaste='xsel --clipboard --output'
 
-# Git 
+# Git
 alias ga='git add'
 alias gaa='git add --all'
 alias gau='git add --update'
