@@ -1,0 +1,5 @@
+---
+- ansible.builtin.import_role:
+    name: thurs.aur
+  when: ansible_distribution == 'Archlinux'
+  tags: [ never, packages ]

@@ -25,7 +25,7 @@ TERM="xterm-256color"
 plugins=(history-substring-search ansible history systemd vagrant alias-finder you-should-use sudo tmux)
 source $ZSH/oh-my-zsh.sh
 source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
-source ~/.bin/tmuxsre-completion.bash
+# source ~/.bin/tmuxsre-completion.bash
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 

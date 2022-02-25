@@ -1,0 +1,27 @@
+- name: Install Homebrew Casks
+  community.general.homebrew_cask:
+    name: "{{ item }}"
+    state: latest
+  loop: "{{ homebrew_casks }}"
+  when: homebrew_casks
+
+- name: Install Homebrew Formulaes
+  community.general.homebrew:
+    name: "{{ item }}"
+    state: latest
+  loop: "{{ homebrew_formulaes }}"
+  when: homebrew_formulaes
+
+- name: Install pip3 Packages
+  ansible.builtin.pip:
+    executable: /usr/bin/pip3
+    extra_args: --user
+    name: "{{ item }}"
+  loop: "{{ pip3_modules }}"
+  when: pip3_modules
+
+- name: Update PATH to Include Python3.8 bin
+  ansible.builtin.lineinfile:
+    path: "{{ lookup('env', 'HOME') }}/.zprofile"
+    insertafter: '^# export PATH='
+    line: "path+=({{ lookup('env', 'HOME') }}/Library/Python/3.8/bin)"

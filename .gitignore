@@ -1,3 +1,5 @@
 configs/.tmux/plugins
 configs/.tmux/tmux-themepack
 configs/.tmux/sidebar
+roles/*
+!roles/thurs.dotfiles

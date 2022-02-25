@@ -1,0 +1,5 @@
+home_path: "{{ lookup('env', 'HOME') }}"
+config_path: "{{ home_path }}/.config"
+
+# remove existing configs
+remove_existing: false

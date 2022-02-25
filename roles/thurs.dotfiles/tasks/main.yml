@@ -1,0 +1,43 @@
+---
+- include_vars: "{{ ansible_distribution | lower | replace(' ', '') }}.yml"
+  tags:
+    - always
+- include_tasks: "{{ ansible_distribution | lower | replace(' ', '') }}.yml"
+  tags:
+    - always
+
+- name: dots block
+  block:
+    - name: remove dotfiles
+      ansible.builtin.file:
+        path: "{{ home_path }}/{{ item.value }}/{{ item.key }}"
+        state: absent
+      loop: "{{ configs|dict2items }}"
+      when: remove_existing | bool
+
+    - name: link dotfiles
+      ansible.builtin.file:
+        src: "{{ home_path }}/.dotfiles/configs/{{ item.key }}"
+        dest: "{{ item.value }}/{{ item.key }}"
+        state: link
+      loop: "{{ configs|dict2items }}"
+
+  when: configs is defined
+  tags: [ never, install ]
+
+- name: bin block
+  block:
+    - name: $HOME/.local/bin exists
+      ansible.builtin.file:
+        path: "{{ home_path }}/.local/bin"
+        state: directory
+
+    - name: mv bin files to $HOME/.local/bin
+      ansible.builtin.file:
+        src: "{{ home_path }}/.dotfiles/bin/{{ item }}"
+        dest: "{{ home_path }}/.local/bin/{{ item }}"
+        state: link
+      loop: "{{ bin }}"
+
+  when: bin is defined
+  tags: [ never, install ]

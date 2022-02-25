@@ -208,7 +208,7 @@ bindsym $mod+m exec $HOME/.config/scripts/monitor_on.sh
 ###############
 ## WALLPAPER ##
 ###############
-exec_always --no-startup-id feh --bg-scale /home/thurs/pictures/wallpapers/Scientific-Space-Planet-Galaxy-Stars-4K-Ultra-HD-Wallpaper-3840x2160.jpg --bg-scale /home/thurs/pictures/wallpapers/night-sky-1440x2560-stars-night-milky-way-mountains-land-419.jpg --bg-scale /home/thurs/pictures/wallpapers/switzerland-3840x2160-4k-5k-wallpaper-alps-mountains-stars-night-5713.jpg
+exec_always --no-startup-id feh --bg-scale $HOME/pictures/wallpapers/Scientific-Space-Planet-Galaxy-Stars-4K-Ultra-HD-Wallpaper-3840x2160.jpg --bg-scale $HOME/pictures/wallpapers/night-sky-1440x2560-stars-night-milky-way-mountains-land-419.jpg --bg-scale $HOME/pictures/wallpapers/switzerland-3840x2160-4k-5k-wallpaper-alps-mountains-stars-night-5713.jpg
 
 
 ##################
@@ -216,7 +216,7 @@ exec_always --no-startup-id feh --bg-scale /home/thurs/pictures/wallpapers/Scien
 ##################
 exec --no-startup-id dunst
 exec --no-startup-id blueman-applet
-exec --no-startup-id xautolock -detectsleep -time 30 -locker "~/.config/scripts/lock.sh" &
+exec --no-startup-id xautolock -detectsleep -time 30 -locker "$HOME/.config/scripts/lock.sh" &
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id $HOME/.config/scripts/picom_launch.sh
@@ -229,7 +229,7 @@ exec --no-startup-id spotify
 for_window [class="Spotify"] move to workspace 6
 
 # workspace 9
-exec --no-startup-id "i3-msg 'workspace 9; append_layout /home/thurs/.config/i3/workspace-9.json'"
+exec --no-startup-id "i3-msg 'workspace 9; append_layout $HOME/.config/i3/workspace-9.json'"
 exec --no-startup-id steam
 for_window [class="Steam"] move to workspace 9
 
@@ -238,7 +238,7 @@ exec thunderbird
 for_window [class="Thunderbird"] move to workspace 10
 
 # workspace 7
-exec --no-startup-id "i3-msg 'workspace 7; append_layout /home/thurs/.config/i3/workspace-7.json'"
+exec --no-startup-id "i3-msg 'workspace 7; append_layout $HOME/.config/i3/workspace-7.json'"
 exec_always --no-startup-id flameshot
 exec --no-startup-id solaar
 for_window [class="solaar"] floating enable
@@ -255,7 +255,7 @@ exec google-chrome-stable --app=https://youtube.com
 for_window [class="Google-chrome"] move to workspace 8
 
 # workspace 5
-exec --no-startup-id "i3-msg 'workspace 5; append_layout /home/thurs/.config/i3/workspace-5.json'"
+exec --no-startup-id "i4-msg 'workspace 5; append_layout $HOME/.config/i3/workspace-5.json'"
 exec alacritty -e $HOME/.local/bin/tmux-htop
 for_window [title="1:htop"] move to workspace 5
 exec firefox -new-window https://irc.thurs.pw

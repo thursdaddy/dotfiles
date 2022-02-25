@@ -1,6 +1,4 @@
 roles:
-  - src: git@gitlab.com:thurs/ansible/roles/thurs.dotfiles.git
-    scm: git
   - src: git@gitlab.com:thurs/ansible/roles/thurs.aur.git
     scm: git
 

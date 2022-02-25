@@ -1,0 +1,34 @@
+configs:
+  .gitconfig: "{{ home_path }}"
+  .p10k.zsh: "{{ home_path }}"
+  .tmux: "{{ home_path }}"
+  .tmux.conf: "{{ home_path }}"
+  .zshrc: "{{ home_path }}"
+  .zprofile: "{{ home_path }}"
+  alacritty: "{{ config_path }}"
+  dunst: "{{ config_path }}"
+  flameshot: "{{ config_path }}"
+  htop: "{{ config_path }}"
+  i3: "{{ config_path }}"
+  neofetch: "{{ config_path }}"
+  nvim: "{{ config_path }}"
+  picom: "{{ config_path }}"
+  polybar: "{{ config_path }}"
+  scripts: "{{ config_path }}"
+  solaar: "{{ config_path }}"
+
+bin:
+  - tmux-cfn
+  - tmux-htop
+
+# thurs.aur
+update_pacman_cache: false
+aur_packages:
+  - alacritty
+  - discord
+  - fd
+  - htop
+  - neovim
+  - ripgrep
+  - spotify
+  - tmux

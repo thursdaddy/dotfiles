@@ -1,0 +1,29 @@
+---
+configs:
+  .p10k.zsh: "{{ home_path }}"
+  .tmux: "{{ home_path }}"
+  .tmux.conf: "{{ home_path }}"
+  htop: "{{ config_path }}"
+  nvim: "{{ config_path }}"
+
+homebrew_casks:
+  - firefox
+  - google-chrome
+  - microsoft-outlook
+  - microsoft-teams
+  - slack
+  - docker
+homebrew_formulaes:
+  - awscliv2
+  - tmux
+  - ykman
+  - make
+  - jq
+  - dos2unix
+  - packer
+pip3_modules:
+  - virtualenv
+  - autoflake
+  - molecule
+  - ansible
+  - docker
