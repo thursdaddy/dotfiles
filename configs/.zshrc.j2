@@ -41,10 +41,6 @@ else
   export EDITOR='vim'
 fi
 
-# fpath=(/usr/local/share/zsh-completions $fpath)
-rm -f "$HOME/.zcompdump"; compinit
-autoload -U compinit
-
 # command-line navigation
 bindkey -e
 bindkey '[C' forward-word
@@ -61,3 +57,22 @@ export ANSIBLE_STDOUT_CALLBACK=yaml
 alias d='dirs -v | head -10'
 alias vim=nvim
 alias virsh="EDITOR=vim virsh"
+
+{% if ansible_distribution == 'Arch Linux' %}
+
+## ANSIBLE TEMPLATING
+# Copy/Pasta
+alias pbcopy='xsel --clipboard --input'
+alias pbpaste='xsel --clipboard --output'
+
+{% endif %}
+
+{% if ansible_distribution == 'MacOSX' and env is defined and env == 'work'  %}
+## ANSIBLE TEMPLATING
+source ~/.bin/tmuxsre-completion.bash
+
+fpath=(/usr/local/share/zsh-completions $fpath)
+rm -f "$HOME/.zcompdump"; compinit
+autoload -U compinit
+
+{% endif %}
