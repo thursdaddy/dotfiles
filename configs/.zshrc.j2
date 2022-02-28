@@ -6,33 +6,28 @@ export ZSH="$HOME/.oh-my-zsh"
 path+=("$HOME/.local/bin")
 export PATH
 
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-# If you come from bash you might have to change your $PATH.
+export LANG=en_US.UTF-8
+TERM="xterm-256color"
 
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zsh_history
 
-# Path to your oh-my-zsh installation.
-TERM="xterm-256color"
-
 # Uncomment the following line if pasting URLs and other text is messed up.
-#DISABLE_MAGIC_FUNCTIONS=true
+DISABLE_MAGIC_FUNCTIONS=true
 
 plugins=(history-substring-search ansible history systemd vagrant alias-finder you-should-use sudo tmux)
 source $ZSH/oh-my-zsh.sh
-source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
 source ~/.zsh_aliases
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# powerlevel10k theme
+source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
+# run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# User configuration
-# You may need to manually set your language environment
-export LANG=en_US.UTF-8
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -53,26 +48,16 @@ bindkey '^R' history-incremental-pattern-search-backward
 export ANSIBLE_HOST_KEY_CHECKING=False
 export ANSIBLE_STDOUT_CALLBACK=yaml
 
-# Misc.
-alias d='dirs -v | head -10'
-alias vim=nvim
-alias virsh="EDITOR=vim virsh"
-
 {% if ansible_distribution == 'Arch Linux' %}
-
 ## ANSIBLE TEMPLATING
 # Copy/Pasta
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
-
 {% endif %}
-
 {% if ansible_distribution == 'MacOSX' and env is defined and env == 'work'  %}
 ## ANSIBLE TEMPLATING
 source ~/.bin/tmuxsre-completion.bash
-
 fpath=(/usr/local/share/zsh-completions $fpath)
 rm -f "$HOME/.zcompdump"; compinit
 autoload -U compinit
-
 {% endif %}

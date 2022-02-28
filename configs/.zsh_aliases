@@ -3,10 +3,6 @@ alias d='dirs -v | head -10'
 alias vim=nvim
 alias virsh="EDITOR=vim virsh"
 
-# Copy/Pasta
-alias pbcopy='xsel --clipboard --input'
-alias pbpaste='xsel --clipboard --output'
-
 # Git
 alias ga='git add'
 alias gaa='git add --all'

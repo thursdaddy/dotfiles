@@ -13,7 +13,7 @@
         path: "{{ home_path }}/{{ item.value }}/{{ item.key }}"
         state: absent
       loop: "{{ configs|dict2items }}"
-      when: remove_existing | bool
+      tags: [ never, remove ]
 
     - name: find .j2
       ansible.builtin.find:
@@ -22,6 +22,7 @@
         recurse: true
         hidden: true
       register: j2_files
+
 
     - name: template .j2 files
       ansible.builtin.template:
