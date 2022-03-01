@@ -69,3 +69,9 @@ alias gcom='git checkout `git branch | egrep "main|master"`'
 alias account='vim $HOME/.local/bin/_coderunner'
 alias _sandbox='echo `pbpaste` > /tmp/sandbox'
 alias _sandbox_new='echo `pbpaste` > /tmp/sandbox && tmux kill-session cfn || tmux-cfn'
+
+## DOCKER BUILDS
+alias db='docker build -t $(whoami)/$(basename $(pwd)):dev .'
+alias dbnc='docker build --no-cache -t $(whoami)/$(basename $(pwd)):dev .'
+alias dbr='docker build -t $(whoami)/$(basename $(pwd)):dev . && docker run -it --rm --name $(basename $(pwd)) $(whoami)/$(basename $(pwd)):dev bash'
+alias dr='docker run -it --rm --name $(basename $(pwd)) $(whoami)/$(basename $(pwd)):dev bash'

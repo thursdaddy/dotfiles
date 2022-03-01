@@ -16,7 +16,7 @@ HISTFILE=~/.zsh_history
 # Uncomment the following line if pasting URLs and other text is messed up.
 DISABLE_MAGIC_FUNCTIONS=true
 
-plugins=(history-substring-search ansible history systemd vagrant alias-finder you-should-use sudo tmux)
+plugins=(globalias history-substring-search ansible history systemd vagrant alias-finder you-should-use sudo tmux)
 source $ZSH/oh-my-zsh.sh
 source ~/.zsh_aliases
 
@@ -48,3 +48,8 @@ bindkey '^R' history-incremental-pattern-search-backward
 export ANSIBLE_HOST_KEY_CHECKING=False
 export ANSIBLE_STDOUT_CALLBACK=yaml
 
+## ANSIBLE TEMPLATING
+source ~/.bin/tmuxsre-completion.bash
+fpath=(/usr/local/share/zsh-completions $fpath)
+rm -f "$HOME/.zcompdump"; compinit
+autoload -U compinit
