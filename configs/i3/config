@@ -208,8 +208,7 @@ bindsym $mod+m exec $HOME/.config/scripts/monitor_on.sh
 ###############
 ## WALLPAPER ##
 ###############
-exec_always --no-startup-id feh --bg-scale $HOME/pictures/wallpapers/night-sky-1440x2560-stars-night-milky-way-mountains-land-419.jpg --bg-scale $HOME/pictures/wallpapers/switzerland-3840x2160-4k-5k-wallpaper-alps-mountains-stars-night-5713.jpg --bg-scale $HOME/pictures/wallpapers/Scientific-Space-Planet-Galaxy-Stars-4K-Ultra-HD-Wallpaper-3840x2160.jpg
-
+exec_always --no-startup-id feh --bg-scale $HOME/pictures/wallpapers/switzerland-3840x2160-4k-5k-wallpaper-alps-mountains-stars-night-5713.jpg --bg-scale $HOME/pictures/wallpapers/night-sky-1440x2560-stars-night-milky-way-mountains-land-419.jpg --bg-scale $HOME/pictures/wallpapers/Scientific-Space-Planet-Galaxy-Stars-4K-Ultra-HD-Wallpaper-3840x2160.jpg
 
 ##################
 ## APPLICATIONS ##
@@ -231,16 +230,16 @@ set $i3_resurrect i3-resurrect
 
 # Save workspace mode.
 mode "save" {
-  bindsym 1 exec "$i3_resurrect save -w 1 --swallow=class,instance,title"
-  bindsym 2 exec "$i3_resurrect save -w 2 --swallow=class,instance,title"
-  bindsym 3 exec "$i3_resurrect save -w 3 --swallow=class,instance,title"
-  bindsym 4 exec "$i3_resurrect save -w 4 --swallow=class,instance,title"
-  bindsym 5 exec "$i3_resurrect save -w 5 --swallow=class,instance,title"
-  bindsym 6 exec "$i3_resurrect save -w 6 --swallow=class,instance,title"
-  bindsym 7 exec "$i3_resurrect save -w 7 --swallow=class,instance,title"
-  bindsym 8 exec "$i3_resurrect save -w 8 --swallow=class,instance,title"
-  bindsym 9 exec "$i3_resurrect save -w 9 --swallow=class,instance,title"
-  bindsym 0 exec "$i3_resurrect save -w 10 --swallow=class,instance,title"
+  bindsym 1 exec "$i3_resurrect save -w 1 --swallow=class,instance,title -d $HOME/.config/i3/i3-resurrect"
+  bindsym 2 exec "$i3_resurrect save -w 2 --swallow=class,instance,title -d $HOME/.config/i3/i3-resurrect"
+  bindsym 3 exec "$i3_resurrect save -w 3 --swallow=class,instance,title -d $HOME/.config/i3/i3-resurrect"
+  bindsym 4 exec "$i3_resurrect save -w 4 --swallow=class,instance,title -d $HOME/.config/i3/i3-resurrect"
+  bindsym 5 exec "$i3_resurrect save -w 5 --swallow=class,instance,title -d $HOME/.config/i3/i3-resurrect"
+  bindsym 6 exec "$i3_resurrect save -w 6 --swallow=class,instance,title -d $HOME/.config/i3/i3-resurrect"
+  bindsym 7 exec "$i3_resurrect save -w 7 --swallow=class,instance,title -d $HOME/.config/i3/i3-resurrect"
+  bindsym 8 exec "$i3_resurrect save -w 8 --swallow=class,instance,title -d $HOME/.config/i3/i3-resurrect"
+  bindsym 9 exec "$i3_resurrect save -w 9 --swallow=class,instance,title -d $HOME/.config/i3/i3-resurrect"
+  bindsym 0 exec "$i3_resurrect save -w 10 --swallow=class,instance,title -d $HOME/.config/i3/i3-resurrect"
 
   # Back to normal: Enter, Escape, or s
   bindsym Return mode "default"
@@ -253,27 +252,27 @@ bindsym $mod+Shift+s mode "save"
 
 # Restore workspace mode.
 mode "restore" {
-  bindsym 1 exec "$i3_resurrect restore -w 1 --programs-only"
-  bindsym 2 exec "$i3_resurrect restore -w 2 --programs-only"
-  bindsym 3 exec "$i3_resurrect restore -w 3 --programs-only"
-  bindsym 4 exec "$i3_resurrect restore -w 4 --programs-only"
-  bindsym 5 exec "$i3_resurrect restore -w 5 --programs-only"
-  bindsym 6 exec "$i3_resurrect restore -w 6 --programs-only"
-  bindsym 7 exec "$i3_resurrect restore -w 7 --programs-only"
-  bindsym 8 exec "$i3_resurrect restore -w 8 --programs-only"
-  bindsym 9 exec "$i3_resurrect restore -w 9 --programs-only"
-  bindsym 0 exec "$i3_resurrect restore -w 10 --programs-only"
+  bindsym 1 exec "$i3_resurrect restore -w 1 --programs-only -d $HOME/.config/i3/i3-resurrect"
+  bindsym 2 exec "$i3_resurrect restore -w 2 --programs-only -d $HOME/.config/i3/i3-resurrect"
+  bindsym 3 exec "$i3_resurrect restore -w 3 --programs-only -d $HOME/.config/i3/i3-resurrect"
+  bindsym 4 exec "$i3_resurrect restore -w 4 --programs-only -d $HOME/.config/i3/i3-resurrect"
+  bindsym 5 exec "$i3_resurrect restore -w 5 --programs-only -d $HOME/.config/i3/i3-resurrect"
+  bindsym 6 exec "$i3_resurrect restore -w 6 --programs-only -d $HOME/.config/i3/i3-resurrect"
+  bindsym 7 exec "$i3_resurrect restore -w 7 --programs-only -d $HOME/.config/i3/i3-resurrect"
+  bindsym 8 exec "$i3_resurrect restore -w 8 --programs-only -d $HOME/.config/i3/i3-resurrect"
+  bindsym 9 exec "$i3_resurrect restore -w 9 --programs-only -d $HOME/.config/i3/i3-resurrect"
+  bindsym 0 exec "$i3_resurrect restore -w 10 --programs-only -d $HOME/.config/i3/i3-resurrect"
 
-  bindsym $mod+1 exec "$i3_resurrect restore -w 1 --layout-only"
-  bindsym $mod+2 exec "$i3_resurrect restore -w 2 --layout-only"
-  bindsym $mod+3 exec "$i3_resurrect restore -w 3 --layout-only"
-  bindsym $mod+4 exec "$i3_resurrect restore -w 4 --layout-only"
-  bindsym $mod+5 exec "$i3_resurrect restore -w 5 --layout-only"
-  bindsym $mod+6 exec "$i3_resurrect restore -w 6 --layout-only"
-  bindsym $mod+7 exec "$i3_resurrect restore -w 7 --layout-only"
-  bindsym $mod+8 exec "$i3_resurrect restore -w 8 --layout-only"
-  bindsym $mod+9 exec "$i3_resurrect restore -w 9 --layout-only"
-  bindsym $mod+0 exec "$i3_resurrect restore -w 10 --layout-only"
+  bindsym $mod+1 exec "$i3_resurrect restore -w 1 --layout-only -d $HOME/.config/i3/i3-resurrect"
+  bindsym $mod+2 exec "$i3_resurrect restore -w 2 --layout-only -d $HOME/.config/i3/i3-resurrect"
+  bindsym $mod+3 exec "$i3_resurrect restore -w 3 --layout-only -d $HOME/.config/i3/i3-resurrect"
+  bindsym $mod+4 exec "$i3_resurrect restore -w 4 --layout-only -d $HOME/.config/i3/i3-resurrect"
+  bindsym $mod+5 exec "$i3_resurrect restore -w 5 --layout-only -d $HOME/.config/i3/i3-resurrect"
+  bindsym $mod+6 exec "$i3_resurrect restore -w 6 --layout-only -d $HOME/.config/i3/i3-resurrect"
+  bindsym $mod+7 exec "$i3_resurrect restore -w 7 --layout-only -d $HOME/.config/i3/i3-resurrect"
+  bindsym $mod+8 exec "$i3_resurrect restore -w 8 --layout-only -d $HOME/.config/i3/i3-resurrect"
+  bindsym $mod+9 exec "$i3_resurrect restore -w 9 --layout-only -d $HOME/.config/i3/i3-resurrect"
+  bindsym $mod+0 exec "$i3_resurrect restore -w 10 --layout-only -d $HOME/.config/i3/i3-resurrect"
 
   # Back to normal: Enter, Escape, or n
   bindsym Return mode "default"
@@ -284,34 +283,34 @@ mode "restore" {
 
 bindsym $mod+n mode "restore"
 
-## workspace 6
-#exec --no-startup-id spotify
-#for_window [class="Spotify"] move to workspace 6
-#
-## workspace 9
-#exec --no-startup-id steam
-#for_window [class="Steam"] move to workspace 9
-#
-## workspace 10
-#exec thunderbird
-#for_window [class="Thunderbird"] move to workspace 10
-#
+# workspace 9
+exec --no-startup-id steam
+for_window [class="Steam"] move to workspace 9
+
+exec --no-startup-id "i3-resurrect restore -w 5 --programs-only -d ~/.config/i3/i3-resurrect/"
+exec --no-startup-id "sh -c 'sleep 5; i3-resurrect restore -w 5 --layout-only -d ~/.config/i3/i3-resurrect/'"
+exec --no-startup-id "sh -c 'sleep 15; i3-resurrect restore -w 9 --layout-only -d ~/.config/i3/i3-resurrect/'"
+
+# workspace 10
+exec thunderbird
+for_window [class="Thunderbird"] move to workspace 10
+
+# workspace 6
+exec --no-startup-id spotify
+for_window [class="Spotify"] move to workspace 6
+
+# workspace 8
+exec google-chrome-stable --app=https://youtube.com
+for_window [class="Google-chrome"] move to workspace 8
+
+for_window [class="solaar"] floating enable
+for_window [class="solaar"] move to workspace 7
+for_window [class="Virt-manager"] move to workspace 7
+for_window [class="Virt-manager"] floating enable
+
 ## workspace 7
+exec --no-startup-id "sh -c 'sleep 10; i3-resurrect restore -w 7 --programs-only -d ~/.config/i3/i3-resurrect/'"
+exec --no-startup-id "sh -c 'sleep 25; i3-resurrect restore -w 7 --layout-only -d ~/.config/i3/i3-resurrect/'"
+
 #exec --no-startup-id solaar
-#for_window [class="solaar"] floating enable
-#for_window [class="solaar"] move to workspace 7
-#exec --no-startup-id virt-manager
-#for_window [class="Virt-manager"] move to workspace 7
-#for_window [class="Virt-manager"] floating enable
-#exec --no-startup-id coolero
-#for_window [class="coolero"] floating enable
-#for_window [class="coolero"] move to workspace 7
-#
-## workspace 8
-## exec google-chrome-stable --app=https://youtube.com
-## for_window [class="Google-chrome"] move to workspace 8
-#
-#exec --no-startup-id i3-resurrect restore -w 5 --layout-only -d ~/.config/i3/i3-resurrect/
-#exec --no-startup-id i3-resurrect restore -w 7 --layout-only -d ~/.config/i3/i3-resurrect/
-#exec --no-startup-id i3-resurrect restore -w 8 --layout-only -d ~/.config/i3/i3-resurrect/
-#exec --no-startup-id i3-resurrect restore -w 9 --layout-only -d ~/.config/i3/i3-resurrect/
+## exec --no-startup-id virt-manager

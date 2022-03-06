@@ -5,6 +5,7 @@ configs:
   .tmux.conf: "{{ home_path }}"
   .zshrc: "{{ home_path }}"
   .zprofile: "{{ home_path }}"
+  .zsh_aliases: "{{ home_path }}"
   alacritty: "{{ config_path }}"
   dunst: "{{ config_path }}"
   flameshot: "{{ config_path }}"

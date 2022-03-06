@@ -1,1 +1,8 @@
-[]
+[
+  {
+    "command": [
+      "/usr/bin/steam"
+    ],
+    "working_directory": "/home/thurs"
+  }
+]
