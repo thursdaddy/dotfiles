@@ -3,6 +3,7 @@ configs:
   .p10k.zsh: "{{ home_path }}"
   .tmux: "{{ home_path }}"
   .tmux.conf: "{{ home_path }}"
+  .zsh_aliases: "{{ home_path }}"
   htop: "{{ config_path }}"
   nvim: "{{ config_path }}"
 

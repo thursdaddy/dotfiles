@@ -13,7 +13,22 @@
         path: "{{ home_path }}/{{ item.value }}/{{ item.key }}"
         state: absent
       loop: "{{ configs|dict2items }}"
-      when: remove_existing | bool
+      tags: [ never, remove ]
+
+    - name: find .j2
+      ansible.builtin.find:
+        paths: "{{ lookup('env', 'HOME') }}/.dotfiles/configs/"
+        patterns: '.*.j2'
+        recurse: true
+        hidden: true
+      register: j2_files
+
+
+    - name: template .j2 files
+      ansible.builtin.template:
+        src: "{{ item.path }}"
+        dest: "{{ item.path | regex_replace('.j2') }}"
+      loop: "{{ j2_files.files }}"
 
     - name: link dotfiles
       ansible.builtin.file:

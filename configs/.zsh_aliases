@@ -1,0 +1,77 @@
+# Misc.
+alias d='dirs -v | head -10'
+alias vim=nvim
+alias virsh="EDITOR=vim virsh"
+
+# Git
+alias ga='git add'
+alias gaa='git add --all'
+alias gau='git add --update'
+
+alias gbr='git branch --remote'
+alias gba='git branch --all'
+alias gbl='git --no-pager branch --all'
+alias gbD='git branch --delete --force'
+alias gbd='git branch --delete'
+
+alias gco='git checkout'
+alias gcob='git checkout -b'
+
+alias gc='git commit'
+alias gca='git commit --amend'
+alias gcm='git commit --message'
+alias gclp='git --no-pager log --graph --topo-order --abbrev-commit --date=short --decorate --all --boundary'
+alias gcl='git --no-pager lg'
+alias grl='git --no-pager reflog'
+
+alias gD='git diff'
+alias gd='git --no-pager diff'
+
+alias gf='git fetch'
+alias gfo='git fetch origin'
+
+alias gp='git push'
+alias gfp='git push --set-upstream origin `git symbolic-ref --short HEAD`'
+alias gsus='git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`'
+alias gl='git pull'
+
+alias gst='git status --short --branch'
+alias gs='git status'
+alias grsh='git reset --soft HEAD^'
+alias grh='git reset'
+alias grhh='git reset --hard'
+alias gru='git reset --'
+alias grset='git remote set-url'
+
+alias gr='git remote'
+alias gra='git remote add'
+alias grb='git rebase'
+alias grba='git rebase --abort'
+alias grbc='git rebase --continue'
+alias grbi='git rebase -i'
+alias grbm='git rebase master'
+alias grbom='git rebase origin/master'
+alias grbo='git rebase --onto'
+alias grbs='git rebase --skip'
+
+alias gstaa='git stash apply'
+alias gstc='git stash clear'
+alias gstd='git stash drop'
+alias gstl='git --no-pager stash list'
+alias gstp='git stash pop'
+alias gsts='git stash show --text'
+alias gstu='gsta --include-untracked'
+alias gsta='git stash --all'
+
+alias gcom='git checkout `git branch | egrep "main|master"`'
+
+# ACG sandboxes
+alias account='vim $HOME/.local/bin/_coderunner'
+alias _sandbox='echo `pbpaste` > /tmp/sandbox'
+alias _sandbox_new='echo `pbpaste` > /tmp/sandbox && tmux kill-session cfn || tmux-cfn'
+
+## DOCKER BUILDS
+alias db='docker build -t $(whoami)/$(basename $(pwd)):dev .'
+alias dbnc='docker build --no-cache -t $(whoami)/$(basename $(pwd)):dev .'
+alias dbr='docker build -t $(whoami)/$(basename $(pwd)):dev . && docker run -it --rm --name $(basename $(pwd)) $(whoami)/$(basename $(pwd)):dev bash'
+alias dr='docker run -it --rm --name $(basename $(pwd)) $(whoami)/$(basename $(pwd)):dev bash'
