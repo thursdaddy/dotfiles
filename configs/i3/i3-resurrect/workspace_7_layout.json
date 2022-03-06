@@ -1,0 +1,191 @@
+{
+  "border": "pixel",
+  "current_border_width": -1,
+  "floating": "auto_off",
+  "fullscreen_mode": 1,
+  "geometry": {
+    "x": 0,
+    "y": 0,
+    "width": 0,
+    "height": 0
+  },
+  "layout": "splitv",
+  "marks": [],
+  "name": "7",
+  "orientation": "none",
+  "percent": null,
+  "scratchpad_state": "none",
+  "sticky": false,
+  "type": "workspace",
+  "workspace_layout": "default",
+  "floating_nodes": [
+    {
+      "border": "pixel",
+      "current_border_width": -1,
+      "floating": "auto_off",
+      "fullscreen_mode": 0,
+      "geometry": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "layout": "splith",
+      "marks": [],
+      "name": null,
+      "orientation": "horizontal",
+      "percent": null,
+      "scratchpad_state": "none",
+      "sticky": false,
+      "type": "floating_con",
+      "workspace_layout": "default",
+      "rect": {
+        "x": 4140,
+        "y": 1360,
+        "width": 881,
+        "height": 662
+      },
+      "nodes": [
+        {
+          "border": "pixel",
+          "current_border_width": 0,
+          "floating": "user_on",
+          "fullscreen_mode": 0,
+          "geometry": {
+            "x": 4140,
+            "y": 1360,
+            "width": 881,
+            "height": 662
+          },
+          "layout": "splith",
+          "marks": [],
+          "name": "Solaar",
+          "orientation": "none",
+          "percent": 1.0,
+          "scratchpad_state": "none",
+          "sticky": false,
+          "type": "con",
+          "workspace_layout": "default",
+          "swallows": [
+            {
+              "class": "^Solaar$",
+              "instance": "^solaar$"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "border": "pixel",
+      "current_border_width": -1,
+      "floating": "auto_off",
+      "fullscreen_mode": 0,
+      "geometry": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "layout": "splith",
+      "marks": [],
+      "name": null,
+      "orientation": "horizontal",
+      "percent": null,
+      "scratchpad_state": "none",
+      "sticky": false,
+      "type": "floating_con",
+      "workspace_layout": "default",
+      "rect": {
+        "x": 4140,
+        "y": 2431,
+        "width": 880,
+        "height": 550
+      },
+      "nodes": [
+        {
+          "border": "pixel",
+          "current_border_width": 0,
+          "floating": "user_on",
+          "fullscreen_mode": 0,
+          "geometry": {
+            "x": 0,
+            "y": 0,
+            "width": 550,
+            "height": 550
+          },
+          "layout": "splith",
+          "marks": [],
+          "name": "Virtual Machine Manager",
+          "orientation": "none",
+          "percent": 1.0,
+          "scratchpad_state": "none",
+          "sticky": false,
+          "type": "con",
+          "workspace_layout": "default",
+          "swallows": [
+            {
+              "class": "^Virt\\-manager$",
+              "instance": "^virt\\-manager$"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "border": "pixel",
+      "current_border_width": -1,
+      "floating": "auto_off",
+      "fullscreen_mode": 0,
+      "geometry": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "layout": "splith",
+      "marks": [],
+      "name": null,
+      "orientation": "horizontal",
+      "percent": null,
+      "scratchpad_state": "none",
+      "sticky": false,
+      "type": "floating_con",
+      "workspace_layout": "default",
+      "rect": {
+        "x": 3844,
+        "y": 488,
+        "width": 1430,
+        "height": 630
+      },
+      "nodes": [
+        {
+          "border": "pixel",
+          "current_border_width": 0,
+          "floating": "user_on",
+          "fullscreen_mode": 0,
+          "geometry": {
+            "x": 3844,
+            "y": 1998,
+            "width": 1432,
+            "height": 540
+          },
+          "layout": "splith",
+          "marks": [],
+          "name": "Coolero",
+          "orientation": "none",
+          "percent": 1.0,
+          "scratchpad_state": "none",
+          "sticky": false,
+          "type": "con",
+          "workspace_layout": "default",
+          "swallows": [
+            {
+              "class": "^Coolero$",
+              "instance": "^coolero$"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

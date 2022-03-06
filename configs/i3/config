@@ -208,60 +208,110 @@ bindsym $mod+m exec $HOME/.config/scripts/monitor_on.sh
 ###############
 ## WALLPAPER ##
 ###############
-exec_always --no-startup-id feh --bg-scale $HOME/pictures/wallpapers/Scientific-Space-Planet-Galaxy-Stars-4K-Ultra-HD-Wallpaper-3840x2160.jpg --bg-scale $HOME/pictures/wallpapers/night-sky-1440x2560-stars-night-milky-way-mountains-land-419.jpg --bg-scale $HOME/pictures/wallpapers/switzerland-3840x2160-4k-5k-wallpaper-alps-mountains-stars-night-5713.jpg
+exec_always --no-startup-id feh --bg-scale $HOME/pictures/wallpapers/night-sky-1440x2560-stars-night-milky-way-mountains-land-419.jpg --bg-scale $HOME/pictures/wallpapers/switzerland-3840x2160-4k-5k-wallpaper-alps-mountains-stars-night-5713.jpg --bg-scale $HOME/pictures/wallpapers/Scientific-Space-Planet-Galaxy-Stars-4K-Ultra-HD-Wallpaper-3840x2160.jpg
 
 
 ##################
 ## APPLICATIONS ##
 ##################
 exec --no-startup-id dunst
-exec --no-startup-id blueman-applet
-exec --no-startup-id xautolock -detectsleep -time 30 -locker "$HOME/.config/scripts/lock.sh" &
+exec_always --no-startup-id flameshot
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id $HOME/.config/scripts/picom_launch.sh
+exec --no-startup-id xautolock -detectsleep -time 30 -locker "$HOME/.config/scripts/lock.sh" &
+bindsym $mod+Control+p exec google-chrome-stable --app=http://192.168.20.12:32400/web/index.html
+bindsym $mod+Control+t exec google-chrome-stable --app=https://tv.youtube.com
+bindsym $mod+Control+y exec google-chrome-stable --app=https://youtube.com
 
 ################
 ## WORKSPACES ##
 ################
-# workspace 10
-exec --no-startup-id spotify
-for_window [class="Spotify"] move to workspace 6
+set $i3_resurrect i3-resurrect
 
-# workspace 9
-exec --no-startup-id "i3-msg 'workspace 9; append_layout $HOME/.config/i3/workspace-9.json'"
-exec --no-startup-id steam
-for_window [class="Steam"] move to workspace 9
+# Save workspace mode.
+mode "save" {
+  bindsym 1 exec "$i3_resurrect save -w 1 --swallow=class,instance,title"
+  bindsym 2 exec "$i3_resurrect save -w 2 --swallow=class,instance,title"
+  bindsym 3 exec "$i3_resurrect save -w 3 --swallow=class,instance,title"
+  bindsym 4 exec "$i3_resurrect save -w 4 --swallow=class,instance,title"
+  bindsym 5 exec "$i3_resurrect save -w 5 --swallow=class,instance,title"
+  bindsym 6 exec "$i3_resurrect save -w 6 --swallow=class,instance,title"
+  bindsym 7 exec "$i3_resurrect save -w 7 --swallow=class,instance,title"
+  bindsym 8 exec "$i3_resurrect save -w 8 --swallow=class,instance,title"
+  bindsym 9 exec "$i3_resurrect save -w 9 --swallow=class,instance,title"
+  bindsym 0 exec "$i3_resurrect save -w 10 --swallow=class,instance,title"
 
-# workspace 6
-exec thunderbird
-for_window [class="Thunderbird"] move to workspace 10
+  # Back to normal: Enter, Escape, or s
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+  bindsym s mode "default"
+  bindsym $mod+s mode "default"
+}
 
-# workspace 7
-exec --no-startup-id "i3-msg 'workspace 7; append_layout $HOME/.config/i3/workspace-7.json'"
-exec_always --no-startup-id flameshot
-exec --no-startup-id solaar
-for_window [class="solaar"] floating enable
-for_window [class="solaar"] move to workspace 7
-exec --no-startup-id virt-manager
-for_window [class="Virt-manager"] move to workspace 7
-for_window [class="Virt-manager"] floating enable
+bindsym $mod+Shift+s mode "save"
 
-# workspace 8
-bindsym $mod+Control+p exec google-chrome-stable --app=http://192.168.20.12:32400/web/index.html
-bindsym $mod+Control+t exec google-chrome-stable --app=https://tv.youtube.com
-bindsym $mod+Control+y exec google-chrome-stable --app=https://youtube.com
-exec google-chrome-stable --app=https://youtube.com
-for_window [class="Google-chrome"] move to workspace 8
+# Restore workspace mode.
+mode "restore" {
+  bindsym 1 exec "$i3_resurrect restore -w 1 --programs-only"
+  bindsym 2 exec "$i3_resurrect restore -w 2 --programs-only"
+  bindsym 3 exec "$i3_resurrect restore -w 3 --programs-only"
+  bindsym 4 exec "$i3_resurrect restore -w 4 --programs-only"
+  bindsym 5 exec "$i3_resurrect restore -w 5 --programs-only"
+  bindsym 6 exec "$i3_resurrect restore -w 6 --programs-only"
+  bindsym 7 exec "$i3_resurrect restore -w 7 --programs-only"
+  bindsym 8 exec "$i3_resurrect restore -w 8 --programs-only"
+  bindsym 9 exec "$i3_resurrect restore -w 9 --programs-only"
+  bindsym 0 exec "$i3_resurrect restore -w 10 --programs-only"
 
-# workspace 5
-exec --no-startup-id "i4-msg 'workspace 5; append_layout $HOME/.config/i3/workspace-5.json'"
-exec alacritty -e $HOME/.local/bin/tmux-htop
-for_window [title="1:htop"] move to workspace 5
-exec firefox -new-window https://irc.thurs.pw
-exec discord
-assign [class="discord"] 5
-exec cawbird
-assign [class="cawbird"] 5
-exec --no-startup-id psensor
-assign [class="psensor"] 5
+  bindsym $mod+1 exec "$i3_resurrect restore -w 1 --layout-only"
+  bindsym $mod+2 exec "$i3_resurrect restore -w 2 --layout-only"
+  bindsym $mod+3 exec "$i3_resurrect restore -w 3 --layout-only"
+  bindsym $mod+4 exec "$i3_resurrect restore -w 4 --layout-only"
+  bindsym $mod+5 exec "$i3_resurrect restore -w 5 --layout-only"
+  bindsym $mod+6 exec "$i3_resurrect restore -w 6 --layout-only"
+  bindsym $mod+7 exec "$i3_resurrect restore -w 7 --layout-only"
+  bindsym $mod+8 exec "$i3_resurrect restore -w 8 --layout-only"
+  bindsym $mod+9 exec "$i3_resurrect restore -w 9 --layout-only"
+  bindsym $mod+0 exec "$i3_resurrect restore -w 10 --layout-only"
+
+  # Back to normal: Enter, Escape, or n
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+  bindsym n mode "default"
+  bindsym $mod+n mode "default"
+}
+
+bindsym $mod+n mode "restore"
+
+## workspace 6
+#exec --no-startup-id spotify
+#for_window [class="Spotify"] move to workspace 6
+#
+## workspace 9
+#exec --no-startup-id steam
+#for_window [class="Steam"] move to workspace 9
+#
+## workspace 10
+#exec thunderbird
+#for_window [class="Thunderbird"] move to workspace 10
+#
+## workspace 7
+#exec --no-startup-id solaar
+#for_window [class="solaar"] floating enable
+#for_window [class="solaar"] move to workspace 7
+#exec --no-startup-id virt-manager
+#for_window [class="Virt-manager"] move to workspace 7
+#for_window [class="Virt-manager"] floating enable
+#exec --no-startup-id coolero
+#for_window [class="coolero"] floating enable
+#for_window [class="coolero"] move to workspace 7
+#
+## workspace 8
+## exec google-chrome-stable --app=https://youtube.com
+## for_window [class="Google-chrome"] move to workspace 8
+#
+#exec --no-startup-id i3-resurrect restore -w 5 --layout-only -d ~/.config/i3/i3-resurrect/
+#exec --no-startup-id i3-resurrect restore -w 7 --layout-only -d ~/.config/i3/i3-resurrect/
+#exec --no-startup-id i3-resurrect restore -w 8 --layout-only -d ~/.config/i3/i3-resurrect/
+#exec --no-startup-id i3-resurrect restore -w 9 --layout-only -d ~/.config/i3/i3-resurrect/

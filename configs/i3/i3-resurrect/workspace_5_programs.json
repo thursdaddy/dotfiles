@@ -1,0 +1,36 @@
+[
+  {
+    "command": [
+      "/usr/bin/psensor"
+    ],
+    "working_directory": "/home/thurs"
+  },
+  {
+    "command": [
+      "/usr/bin/alacritty",
+      "-e",
+      "/home/thurs/.local/bin/tmux-htop"
+    ],
+    "working_directory": "/home/thurs"
+  },
+  {
+    "command": [
+      "/usr/lib/firefox/firefox",
+      "-new-window",
+      "https://irc.thurs.pw"
+    ],
+    "working_directory": "/home/thurs"
+  },
+  {
+    "command": [
+      "/usr/bin/cawbird"
+    ],
+    "working_directory": "/home/thurs"
+  },
+  {
+    "command": [
+      "/opt/discord/Discord"
+    ],
+    "working_directory": "/home/thurs"
+  }
+]

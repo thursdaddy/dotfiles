@@ -1,0 +1,10 @@
+[
+  {
+    "command": [
+      "/opt/google/chrome/chrome",
+      "--app=https://youtube.com",
+      "--enable-crashpad"
+    ],
+    "working_directory": "/home/thurs"
+  }
+]

@@ -1,0 +1,181 @@
+{
+  "border": "pixel",
+  "current_border_width": -1,
+  "floating": "auto_off",
+  "fullscreen_mode": 1,
+  "geometry": {
+    "x": 0,
+    "y": 0,
+    "width": 0,
+    "height": 0
+  },
+  "layout": "splitv",
+  "marks": [],
+  "name": "5",
+  "orientation": "vertical",
+  "percent": null,
+  "scratchpad_state": "none",
+  "sticky": false,
+  "type": "workspace",
+  "workspace_layout": "default",
+  "nodes": [
+    {
+      "border": "pixel",
+      "current_border_width": 0,
+      "floating": "auto_off",
+      "fullscreen_mode": 0,
+      "geometry": {
+        "x": 20,
+        "y": 2238,
+        "width": 3796,
+        "height": 754
+      },
+      "layout": "splith",
+      "marks": [],
+      "name": "Psensor - Temperature Monitor",
+      "orientation": "none",
+      "percent": 0.043311917235017115,
+      "scratchpad_state": "none",
+      "sticky": false,
+      "type": "con",
+      "workspace_layout": "default",
+      "swallows": [
+        {
+          "class": "^Psensor$",
+          "instance": "^psensor$"
+        }
+      ]
+    },
+    {
+      "border": "pixel",
+      "current_border_width": 0,
+      "floating": "auto_off",
+      "fullscreen_mode": 0,
+      "geometry": {
+        "x": 0,
+        "y": 0,
+        "width": 800,
+        "height": 600
+      },
+      "layout": "splith",
+      "marks": [],
+      "name": "1:htop",
+      "orientation": "none",
+      "percent": 0.20323284241046424,
+      "scratchpad_state": "none",
+      "sticky": false,
+      "type": "con",
+      "workspace_layout": "default",
+      "swallows": [
+        {
+          "class": "^Alacritty$",
+          "instance": "^Alacritty$"
+        }
+      ]
+    },
+    {
+      "border": "pixel",
+      "current_border_width": -1,
+      "floating": "auto_off",
+      "fullscreen_mode": 0,
+      "geometry": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "layout": "tabbed",
+      "marks": [],
+      "name": null,
+      "orientation": "horizontal",
+      "percent": 0.3103410101808836,
+      "scratchpad_state": "none",
+      "sticky": false,
+      "type": "con",
+      "workspace_layout": "default",
+      "nodes": [
+        {
+          "border": "pixel",
+          "current_border_width": 0,
+          "floating": "auto_off",
+          "fullscreen_mode": 0,
+          "geometry": {
+            "x": 3844,
+            "y": 484,
+            "width": 1432,
+            "height": 1034
+          },
+          "layout": "splith",
+          "marks": [],
+          "name": "#vim \u2014 The Lounge \u2014 Mozilla Firefox",
+          "orientation": "none",
+          "percent": 0.5,
+          "scratchpad_state": "none",
+          "sticky": false,
+          "type": "con",
+          "workspace_layout": "default",
+          "swallows": [
+            {
+              "class": "^firefox$",
+              "instance": "^Navigator$"
+            }
+          ]
+        },
+        {
+          "border": "pixel",
+          "current_border_width": 0,
+          "floating": "auto_off",
+          "fullscreen_mode": 0,
+          "geometry": {
+            "x": 4,
+            "y": 1444,
+            "width": 1274,
+            "height": 1568
+          },
+          "layout": "splith",
+          "marks": [],
+          "name": "Cawbird - @thursdaddy",
+          "orientation": "none",
+          "percent": 0.5,
+          "scratchpad_state": "none",
+          "sticky": false,
+          "type": "con",
+          "workspace_layout": "default",
+          "swallows": [
+            {
+              "class": "^Cawbird$",
+              "instance": "^cawbird$"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "border": "pixel",
+      "current_border_width": 0,
+      "floating": "auto_off",
+      "fullscreen_mode": 0,
+      "geometry": {
+        "x": 3843,
+        "y": 2377,
+        "width": 1434,
+        "height": 628
+      },
+      "layout": "splith",
+      "marks": [],
+      "name": "*Discord",
+      "orientation": "none",
+      "percent": 0.44311423017363505,
+      "scratchpad_state": "none",
+      "sticky": false,
+      "type": "con",
+      "workspace_layout": "default",
+      "swallows": [
+        {
+          "class": "^discord$",
+          "instance": "^discord$"
+        }
+      ]
+    }
+  ]
+}

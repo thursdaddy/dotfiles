@@ -1,0 +1,77 @@
+{
+  "border": "pixel",
+  "current_border_width": -1,
+  "floating": "auto_off",
+  "fullscreen_mode": 1,
+  "geometry": {
+    "x": 0,
+    "y": 0,
+    "width": 0,
+    "height": 0
+  },
+  "layout": "splith",
+  "marks": [],
+  "name": "9",
+  "orientation": "horizontal",
+  "percent": 1.0,
+  "scratchpad_state": "none",
+  "sticky": false,
+  "type": "workspace",
+  "workspace_layout": "default",
+  "nodes": [
+    {
+      "border": "pixel",
+      "current_border_width": 0,
+      "floating": "auto_off",
+      "fullscreen_mode": 0,
+      "geometry": {
+        "x": 4,
+        "y": 4,
+        "width": 2552,
+        "height": 1400
+      },
+      "layout": "splith",
+      "marks": [],
+      "name": "Steam",
+      "orientation": "none",
+      "percent": 0.8800000000000003,
+      "scratchpad_state": "none",
+      "sticky": false,
+      "type": "con",
+      "workspace_layout": "default",
+      "swallows": [
+        {
+          "class": "^Steam$",
+          "instance": "^Steam$"
+        }
+      ]
+    },
+    {
+      "border": "pixel",
+      "current_border_width": 0,
+      "floating": "auto_off",
+      "fullscreen_mode": 0,
+      "geometry": {
+        "x": 1282,
+        "y": 4,
+        "width": 1274,
+        "height": 1400
+      },
+      "layout": "splith",
+      "marks": [],
+      "name": "Friends List",
+      "orientation": "none",
+      "percent": 0.11999999999999984,
+      "scratchpad_state": "none",
+      "sticky": false,
+      "type": "con",
+      "workspace_layout": "default",
+      "swallows": [
+        {
+          "class": "^Steam$",
+          "instance": "^Steam$"
+        }
+      ]
+    }
+  ]
+}

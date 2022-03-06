@@ -1,0 +1,29 @@
+[
+  {
+    "command": [
+      "/usr/bin/python3.10",
+      "/usr/bin/solaar"
+    ],
+    "working_directory": "/home/thurs"
+  },
+  {
+    "command": [
+      "/usr/bin/python3.10",
+      "/usr/bin/coolero"
+    ],
+    "working_directory": "/home/thurs"
+  },
+  {
+    "command": [
+      "/usr/bin/python3.10",
+      "/usr/bin/virt-manager"
+    ],
+    "working_directory": "/home/thurs"
+  },
+  {
+    "command": [
+      "/usr/bin/python3.10"
+    ],
+    "working_directory": "/home/thurs"
+  }
+]
