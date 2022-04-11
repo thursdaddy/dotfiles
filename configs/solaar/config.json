@@ -1,15 +1,68 @@
 {
-  "4079:52239608": {
+  "4079:61F7420E": {
+    "_absent": [
+      "hi-res-scroll",
+      "lowres-smooth-scroll",
+      "hires-smooth-invert",
+      "hires-smooth-resolution",
+      "smart-shift",
+      "thumb-scroll-mode",
+      "thumb-scroll-invert",
+      "pointer_speed",
+      "dpi-sliding",
+      "speed-change",
+      "mouse-gestures",
+      "backlight",
+      "backlight-timed",
+      "fn-swap",
+      "reprogrammable-keys",
+      "persistent-remappable-keys",
+      "divert-keys",
+      "disable-keyboard-keys",
+      "divert-crown",
+      "crown-smooth",
+      "divert-gkeys",
+      "m-key-leds",
+      "mr-key-led",
+      "multiplatform",
+      "change-host",
+      "gesture2-gestures",
+      "gesture2-divert",
+      "gesture2-params"
+    ],
     "_modelId": "4079C0880000",
     "_name": "G Pro Wireless Gaming Mouse",
     "_serial": "61F7420E",
     "_unitId": "61F7420E",
     "dpi": 1600,
+    "onboard_profiles": 1,
     "report_rate": 1,
     "thumb-scroll-invert": false,
     "thumb-scroll-mode": false
   },
   "4082:BDF730B5": {
+    "_absent": [
+      "hi-res-scroll",
+      "lowres-smooth-scroll",
+      "onboard_profiles",
+      "report_rate",
+      "pointer_speed",
+      "speed-change",
+      "backlight",
+      "backlight-timed",
+      "fn-swap",
+      "persistent-remappable-keys",
+      "disable-keyboard-keys",
+      "divert-crown",
+      "crown-smooth",
+      "divert-gkeys",
+      "m-key-leds",
+      "mr-key-led",
+      "multiplatform",
+      "gesture2-gestures",
+      "gesture2-divert",
+      "gesture2-params"
+    ],
     "_modelId": "B02340820000",
     "_name": "MX Master 3 Wireless Mouse",
     "_serial": "BDF730B5",
@@ -39,5 +92,5 @@
     "thumb-scroll-invert": false,
     "thumb-scroll-mode": false
   },
-  "_version": "1.1.1"
+  "_version": "1.1.2"
 }
