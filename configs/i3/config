@@ -38,18 +38,18 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # main
-workspace 1 output DP-2
-workspace 2 output DP-2
-workspace 3 output DP-2
-workspace 4 output DP-2
+workspace 1 output DP-0
+workspace 2 output DP-0
+workspace 3 output DP-0
+workspace 4 output DP-0
 # right
-workspace 5 output DP-0
-workspace 6 output DP-0
-workspace 7 output DP-0
+workspace 5 output HDMI-0
+workspace 6 output HDMI-0
+workspace 7 output HDMI-0
 # top
-workspace 8 output DP-4
-workspace 9 output DP-4
-workspace 10 output DP-4
+workspace 9 output DP-2
+workspace 9 output DP-2
+workspace 10 output DP-2
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -197,8 +197,7 @@ bindsym $mod+x exec "sleep 1; xset dpms force off"
 bindsym $mod+o exec --no-startup-id rofi -show drun -show-icons -display-drun ""
 bindsym $mod+Shift+o exec --no-startup-id rofi -show window
 
-bindsym $mod+Control+Return exec firefox
-bindsym $mod+Control+Shift+Return exec google-chrome-stable
+bindsym $mod+Shift+f exec firefox
 
 bindsym --release $mod+p exec "flameshot screen -r -p $HOME/pictures/screenshots"
 bindsym --release $mod+Shift+p exec "flameshot gui"
@@ -208,6 +207,7 @@ bindsym $mod+m exec $HOME/.config/scripts/monitor_on.sh
 ###############
 ## WALLPAPER ##
 ###############
+# exec_always --no-startup-id feh --bg-scale $HOME/pictures/wallpapers/night-sky-1440x2560-stars-night-milky-way-mountains-land-419.jpg --bg-scale $HOME/pictures/wallpapers/switzerland-3840x2160-4k-5k-wallpaper-alps-mountains-stars-night-5713.jpg  --bg-scale $HOME/pictures/wallpapers/Scientific-Space-Planet-Galaxy-Stars-4K-Ultra-HD-Wallpaper-3840x2160.jpg
 exec_always --no-startup-id feh --bg-scale $HOME/pictures/wallpapers/switzerland-3840x2160-4k-5k-wallpaper-alps-mountains-stars-night-5713.jpg --bg-scale $HOME/pictures/wallpapers/night-sky-1440x2560-stars-night-milky-way-mountains-land-419.jpg --bg-scale $HOME/pictures/wallpapers/Scientific-Space-Planet-Galaxy-Stars-4K-Ultra-HD-Wallpaper-3840x2160.jpg
 
 ##################
@@ -219,9 +219,10 @@ exec_always --no-startup-id flameshot
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id $HOME/.config/scripts/picom_launch.sh
 exec --no-startup-id xautolock -detectsleep -time 30 -locker "$HOME/.config/scripts/lock.sh" &
-bindsym $mod+Control+p exec google-chrome-stable --app=http://192.168.20.12:32400/web/index.html
-bindsym $mod+Control+t exec google-chrome-stable --app=https://tv.youtube.com
-bindsym $mod+Control+y exec google-chrome-stable --app=https://youtube.com
+bindsym $mod+Shift+p exec google-chrome-stable --app=http://192.168.20.12:32400/web/index.html
+bindsym $mod+Shift+t exec google-chrome-stable --app=https://tv.youtube.com
+bindsym $mod+Shift+y exec google-chrome-stable --app=https://youtube.com
+bindsym $mod+Shift+m exec tidal-hifi
 
 ################
 ## WORKSPACES ##

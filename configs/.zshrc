@@ -47,5 +47,3 @@ bindkey '^R' history-incremental-pattern-search-backward
 # Ansible exports
 export ANSIBLE_HOST_KEY_CHECKING=False
 export ANSIBLE_STDOUT_CALLBACK=yaml
-
-source $HOME/.zsh-vi-mode/zsh-vi-mode.plugin.zsh
